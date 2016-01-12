@@ -4,5 +4,5 @@ Welcome to Silent Auction. A project under National Honor Society.
   <%= link_to "Log in", new_admin_session_path() %>
   <%= link_to "Sign up", new_admin_registration_path() %>
 <% else %>
-  <%= link_to "Log out", destroy_admin_session_path() %>
+  <%= link_to "Log out", destroy_admin_session_path(), method: :delete %>
 <% end %>
