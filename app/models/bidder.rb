@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class Bidder < ActiveRecord::Base
   has_many :bids
   has_many :items, through: :bids
 
