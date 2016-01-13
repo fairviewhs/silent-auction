@@ -4,14 +4,20 @@
   The website is still under construction.
 </paper-material>
 
-<paper-material elevation="1" class="maincontent">
-  <!-- <paper-listbox> -->
-    <paper-item>
-      <paper-item-body two-line>
-        <div>Show your status</div>
-        <div secondary>Your status is visible to everyone</div>
-      </paper-item-body>
-    </paper-item>
-    <paper-item>Item 2</paper-item>
-  <!-- </paper-listbox> -->
-</paper-material>
+<% if admin_signed_in? %>
+  <paper-material elevation="1" class="maincontent">
+    <% if @auctions.empty? %>
+      <paper-item>You are not running any active auctions.</paper-item>
+    <% else %>
+      <% @auctions.each do |auction| %>
+        <paper-item>
+          <paper-item-body two-line>
+            <div><%= auction.name %>/div>
+            <div secondary><%= host %></div>
+          </paper-item-body>
+        </paper-item>
+        <paper-item>Item 2</paper-item>
+      <% end %>
+    <% end %>
+  </paper-material>
+<% end %>
