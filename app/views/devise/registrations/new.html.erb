@@ -6,18 +6,18 @@
 
     <paper-input-container alwaysFloatLabel="false">
       <label>Email</label>
-      <%= f.email_field :email, autofocus: true, 'is':'iron-input' %>
+      <%= f.email_field :email, autofocus: true %>
     </paper-input-container>
 
     <paper-input-container minlength="8">
       <label>Password (<%= @minimum_password_length %> characters minimum)</label>
-      <%= f.password_field :password, autocomplete: "off", 'is':'iron-input' %>
+      <%= f.password_field :password, autocomplete: "off" %>
       <paper-input-char-counter></paper-input-char-counter>
     </paper-input-container>
 
     <paper-input-container alwaysFloatLabel="false">
       <label>Password Confirmation</label>
-      <%= f.password_field :password_confirmation, autocomplete: "off", 'is':'iron-input' %>
+      <%= f.password_field :password_confirmation, autocomplete: "off" %>
     </paper-input-container>
 
     <paper-button id="submit">Sign up</paper-button>

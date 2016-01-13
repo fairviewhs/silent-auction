@@ -4,12 +4,12 @@
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {id: "form"}) do |f| %>
     <paper-input-container alwaysFloatLabel="false">
       <label>Email</label>
-      <%= f.email_field :email, autofocus: true, 'is':'iron-input' %>
+      <%= f.email_field :email, autofocus: true %>
     </paper-input-container>
 
     <paper-input-container alwaysFloatLabel="false">
       <label>Password</label>
-      <%= f.password_field :password, autocomplete: "off", 'is':'iron-input' %>
+      <%= f.password_field :password, autocomplete: "off" %>
     </paper-input-container>
 
     <% if devise_mapping.rememberable? -%>
