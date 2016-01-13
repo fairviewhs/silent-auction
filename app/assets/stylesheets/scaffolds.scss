@@ -1,13 +1,15 @@
 body {
+  margin: 0;
   background-color: #fff;
   color: #333;
-  font-family: verdana, arial, helvetica, sans-serif;
+  font-family: roboto, arial, helvetica, sans-serif;
+  // font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
 }
 
 p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
+  // font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
 }
@@ -19,16 +21,13 @@ pre {
 }
 
 a {
-  color: #000;
+  color: #FFF;
+  text-decoration: none;
 
-  &:visited {
-    color: #666;
-  }
-
-  &:hover {
-    color: #fff;
-    background-color: #000;
-  }
+  // &:hover {
+  //   color: #fff;
+  //   background-color: purple;
+  // }
 }
 
 div {
