@@ -6,6 +6,10 @@
 
 <% if admin_signed_in? %>
   <paper-material elevation="1" class="maincontent">
+    <div class="titlebar">
+      <div class="title">Your auctions</div>
+      <%= link_to "<paper-button class='content' id='newauction'>New Auction</paper-button>".html_safe, new_auction_path() %>
+    </div>
     <% if @auctions.empty? %>
       <paper-item>You are not running any active auctions.</paper-item>
     <% else %>
@@ -19,5 +23,4 @@
         <paper-item>Item 2</paper-item>
       <% end %>
     <% end %>
-  </paper-material>
 <% end %>

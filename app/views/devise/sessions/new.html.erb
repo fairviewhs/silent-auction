@@ -2,12 +2,12 @@
   <h2>Log in</h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {id: "form"}) do |f| %>
-    <paper-input-container alwaysFloatLabel="false">
+    <paper-input-container always-float-label>
       <label>Email</label>
       <%= f.email_field :email, autofocus: true %>
     </paper-input-container>
 
-    <paper-input-container alwaysFloatLabel="false">
+    <paper-input-container always-float-label>
       <label>Password</label>
       <%= f.password_field :password, autocomplete: "off" %>
     </paper-input-container>

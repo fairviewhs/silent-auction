@@ -4,18 +4,18 @@
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {id: "form"}) do |f| %>
     <%= devise_error_messages! %>
 
-    <paper-input-container alwaysFloatLabel="false">
+    <paper-input-container always-float-label>
       <label>Email</label>
       <%= f.email_field :email, autofocus: true %>
     </paper-input-container>
 
-    <paper-input-container minlength="8">
+    <paper-input-container always-float-label>
       <label>Password (<%= @minimum_password_length %> characters minimum)</label>
-      <%= f.password_field :password, autocomplete: "off" %>
+      <%= f.password_field :password, autocomplete: "off", id: "newpassword" %>
       <paper-input-char-counter></paper-input-char-counter>
     </paper-input-container>
 
-    <paper-input-container alwaysFloatLabel="false">
+    <paper-input-container always-float-label>
       <label>Password Confirmation</label>
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
     </paper-input-container>
