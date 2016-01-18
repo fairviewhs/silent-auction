@@ -8,3 +8,22 @@ paper-material.maincontent {
   padding-right: 30px;
   padding-bottom: 20px;
 }
+
+paper-button.content {
+  color: rgb(23, 148, 201);
+}
+
+div.titlebar {
+  width: 100%;
+  height: 30px;
+  div.title {
+    float: left;
+    font-weight: bold;
+    font-size: 18px;
+    padding-top: 8px;
+  }
+
+  paper-button#newauction {
+    float: right;
+  }
+}
