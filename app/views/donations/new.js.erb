@@ -1,0 +1,4 @@
+if (!$('#pledge-form').length) {
+  $('<%= escape_javascript(render partial: "new", locals: { donation: @donation}) %>')
+      .insertAfter('#pledge-button').css({'opacity':0}).animate({'opacity':1});
+}

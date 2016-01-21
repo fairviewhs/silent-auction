@@ -1,10 +1,10 @@
 class AuctionsController < ApplicationController
   def new
-    @auction = Auction.new()
+    @auction = Auction.new
   end
 
   def create
-    render :text => params
+    #render :text => params
     @newauction = Auction.new(auction_params)
 
     if @newauction.save
@@ -20,5 +20,4 @@ class AuctionsController < ApplicationController
     def auction_params
       params.require(:auction).permit(:name, :host, :description, :start_time, :end_time)
     end
-  end
 end

@@ -1,0 +1,14 @@
+<div class='container'>
+  <h3>This is the index page for donations.</h3>
+  <% if @donations.any? %>
+    <p>Donors who have made a pledge:</p>
+    <% @donations.each do |donation| %>
+      <paper-item>
+        <div><%= donation.name %></div>
+      </paper-item>
+    <% end %>
+  <% else %>
+    <p>There have been no donations made at this point. Be the first to make the pledge!</p>
+  <% end %>
+  <div id='pledge-button'><%= link_to 'Make a pledge', new_donation_path, remote: true %></div>
+</div>

@@ -1,0 +1,25 @@
+<div id="pledge-form">
+  <%= form_for donation,
+               url: {action: "create"},
+               remote: true do |f| %>
+    <div class="field">
+      <%= f.label :name, 'Your Name' %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field"
+      <%= f.label :email, 'Your Email' %><br>
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.label :amount, 'Your Phone Number' %></br>
+      <%= f.text_field :phone %>
+    </div>
+    <div class="field">
+      <%= f.label :amount, 'Amount Pledged ($)' %><br>
+      <%= f.number_field :amount, step: 5, value: 20 %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Take pledge", data: { disable_with: 'Submitting...' } %>
+    </div>
+  <% end %>
+</div>
