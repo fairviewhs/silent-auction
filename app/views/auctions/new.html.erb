@@ -1,9 +1,9 @@
 <paper-material elevation="1" class="maincontent">
-  <h2>Log in</h2>
+  <h2>Start an Auction</h2>
 
   <%= form_for(@auction, url: auctions_path(), html: {id: "form", method: :post}) do |f| %>
     <paper-input-container always-float-label>
-      <label>Name</label>
+      <label>Auction name</label>
       <%= f.text_field :name, autofocus: true %>
     </paper-input-container>
 
@@ -17,7 +17,7 @@
       <%= f.text_field :description, autofocus: true %>
     </paper-input-container>
 
-    
+
 
     <paper-button id="submit">Create Auction</paper-button>
   <% end %>
