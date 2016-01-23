@@ -10,19 +10,27 @@
   opacity: 0;
   left: 175px;
   pointer-events: none;
-  transition: all 0.5s;
+  transition: all 0.01s;
 
   &.shown {
     opacity: 1;
     pointer-events: auto;
     cursor: pointer;
+    transition: all 0.5s;
+
+    &:hover {
+      #pledge-x-upper, #pledge-x-lower {
+        background-color: #098fef;
+      }
+    }
+
   }
 }
 
 #pledge-x-upper, #pledge-x-lower {
   position: absolute;
   width: 90%;
-  height: 5px;
+  height: 2px;
   background-color: #199fff;
   transform-origin: 50% 50%;
 }
