@@ -2,3 +2,9 @@ if (!$('#pledge-form').length) {
   $('<%= escape_javascript(render partial: "new", locals: { donation: @donation}) %>')
       .insertAfter('#pledge-button').css({'opacity':0}).animate({'opacity':1});
 }
+$("#pledge-cancel-button").addClass("shown");
+
+$("#pledge-cancel-button").on("click", function() {
+  $("#pledge-form").remove().animate({"opacity": 1}, 1000);
+  $("#pledge-cancel-button").removeClass("shown");
+});
