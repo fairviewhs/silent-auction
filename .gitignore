@@ -16,3 +16,6 @@
 !/log/.keep
 /tmp
 config/secrets.yml
+
+# Ignore idea IDE's directory
+.idea/
