@@ -9,7 +9,7 @@
 </head>
 <body>
   <paper-toolbar>
-    <div class='title'>Silent Auction</div>
+    <div class='title'><%= link_to "Silent Auction", root_path %></div>
     <% if !admin_signed_in? %>
       <%= link_to "<paper-button>Log in</paper-button>".html_safe, new_admin_session_path() %>
       <%= link_to "<paper-button>Sign up</paper-button>".html_safe, new_admin_registration_path() %>
