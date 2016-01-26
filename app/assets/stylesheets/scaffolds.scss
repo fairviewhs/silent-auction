@@ -23,11 +23,10 @@ pre {
 a {
   color: #FFF;
   text-decoration: none;
+}
 
-  // &:hover {
-  //   color: #fff;
-  //   background-color: purple;
-  // }
+a.body {
+  color: #1794c9;
 }
 
 div {
@@ -69,4 +68,13 @@ div {
     font-size: 12px;
     list-style: square;
   }
+}
+
+div.footer {
+  height: 18px;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  font-size: 15px;
 }

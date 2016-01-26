@@ -1,10 +1,10 @@
-<paper-material elevation="1" class="maincontent">
-  Welcome to Silent Auction. A project under National Honor Society.
+<% if !admin_signed_in? %>
+  <paper-material elevation="1" class="maincontent">
+    Welcome to Silent Auction. A project under National Honor Society.
 
-  The website is still under construction.
-</paper-material>
-
-<% if admin_signed_in? %>
+    The website is still under construction.
+  </paper-material>
+<% else %>
   <paper-material elevation="1" class="maincontent">
     <div class="titlebar">
       <div class="title">Your auctions</div>

@@ -21,7 +21,13 @@
   <!-- <paper-toast text="Hello world!" opened><%= notice %><%= alert %></paper-toast> -->
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
-  <%= yield %>
-
+  <div class="wrapper">
+    <%= yield %>
+  </div>
+  <div class="footer">
+    Created with <%= image_tag("heart.png") %> by
+    <a class="body" href="http://fairviewhs.org/sites/nhs" target="_blank">Fairview National Honor Society</a> and
+    <a class="body" href="http://fairviewhs.org" target="_blank">Fairview Web Team.</a>
+  </div>
 </body>
 </html>
