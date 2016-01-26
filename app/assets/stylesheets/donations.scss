@@ -2,12 +2,106 @@
   padding: 20px 50px;
 }
 
-#pledge-button {
+#pledge-cancel-button {
+  display: inline-block;
+  height: 41px;
+  width: 41px;
+  position: absolute;
+  opacity: 0;
+  left: 175px;
+  pointer-events: none;
+  transition: all 0.01s;
+
+  &.shown {
+    opacity: 1;
+    pointer-events: auto;
+    cursor: pointer;
+    transition: all 0.5s;
+
+    &:hover {
+      #pledge-x-upper, #pledge-x-lower {
+        background-color: #098fef;
+      }
+    }
+
+  }
+}
+
+#pledge-x-upper, #pledge-x-lower {
+  position: absolute;
+  width: 90%;
+  height: 2px;
+  background-color: #199fff;
+  transform-origin: 50% 50%;
+}
+
+#pledge-x-upper {
+  top: calc(50% - 2.5px);
+  left: 5%;
+  transform: rotate(-45deg);
+}
+
+#pledge-x-lower {
+  top: calc(50% - 2.5px);
+  left: 5%;
+  transform: rotate(45deg);
+}
+
+#pledge-button, .actions {
+  z-index: 1;
+  cursor: pointer;
   display: inline-block;
   padding: 10px;
   border: 1px solid #199fff;
 
-  a {
+  background-color: #fffs;
+
+  transition: background-color 0.25s;
+  -webkit-transition: background-color 0.25s;
+
+  a, input {
+    font-size: 14px;
+    outline: 0;
+    box-shadow: 0;
+    border: 0;
+    background-color: transparent;
     color: #199fff;
+    transition: color 0.25s;
+    -webkit-transition: color 0.25s;
   }
+
+  input {
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  &:hover {
+    background-color: #199fff;
+
+    a, input {
+      color: #fff;
+    }
+
+  }
+}
+
+#pledge-form {
+  display: block;
+  margin-top: 50px;
+
+  .field {
+    margin-left: 2vw;
+    margin-right: 2vw;
+
+  }
+
+  .number-field {
+    width: 200px;
+    font-size: 30px;
+  }
+}
+
+.actions {
+  margin-top: 50px;
 }

@@ -17,3 +17,6 @@
 /tmp
 config/secrets.yml
 .DS_Store
+
+# Ignore idea IDE's directory
+.idea/
