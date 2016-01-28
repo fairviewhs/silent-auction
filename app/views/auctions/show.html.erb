@@ -7,7 +7,22 @@
     <p><b>Host: </b><%= @current_auction.host %></p>
     <p><b>Start Time: </b><%= @current_auction.start_time.strftime("%H:%M on %x") %></p>
     <p><b>End Time: </b><%= @current_auction.end_time.strftime("%H:%M on %x") %></p>
+    <%= link_to "<paper-button class='content'>New Item</paper-button>".html_safe,
+        new_item_path(auction_id: @current_auction.id) if admin_signed_in? && @current_auction.admins.include?(current_admin) %>
     <hr>
-    
+    <% if @current_auction.items.empty? %>
+      <p>There are currently no items in the auction</p>
+    <% else %>
+      <div id="cardGrid">
+        <% @current_auction.items.each do |item| %>
+          <%= link_to(item_path(id: item.id), class: "body") do %>
+            <div class="card">
+              <div class="picture"><%= image_tag item.picture.url(:medium) %></div>
+              <div class="cardTitle"><%= item.name %></div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
 </paper-material>

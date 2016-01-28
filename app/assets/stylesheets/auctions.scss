@@ -26,3 +26,22 @@ paper-material div.title {
   padding-bottom: 20px;
   font-size: 18px;
 }
+
+div.card {
+  width: 325px;
+  margin: 10px;
+  float: left;
+
+  div.cardTitle {
+    height: 24px;
+    width: 100%;
+  }
+}
+
+.cardShadow {
+    -moz-box-shadow: 3px 3px 4px #ccc;
+    -webkit-box-shadow: 3px 3px 4px #ccc;
+    box-shadow: 3px 3px 4px #ccc; /* For IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#cccccc')"; /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength = 4, Direction = 135, Color = '#cccccc');
+}

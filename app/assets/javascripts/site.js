@@ -11,4 +11,12 @@ $(document).ready(function() {
   $('paper-item.auctions').mouseout(function() {
     $(this).css('background-color', '#FFF');
   })
+
+  $('div.card').mouseover(function() {
+    $(this).addClass('cardShadow');
+  });
+
+  $('div.card').mouseout(function() {
+    $(this).removeClass('cardShadow');
+  });
 })
