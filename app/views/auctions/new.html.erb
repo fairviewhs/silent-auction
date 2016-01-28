@@ -17,7 +17,25 @@
       <%= f.text_field :description, autofocus: true %>
     </paper-input-container>
 
+    <paper-input-container always-float-label>
+      <label>Start Date</label>
+      <%= f.date_select :start_time %>
+    </paper-input-container>
 
+    <paper-input-container always-float-label>
+      <label>Start Time</label>
+      <%= f.time_select :start_time %>
+    </paper-input-container>
+
+    <paper-input-container always-float-label>
+      <label>End Date</label>
+      <%= f.date_select :end_time %>
+    </paper-input-container>
+
+    <paper-input-container always-float-label>
+      <label>End Time</label>
+      <%= f.time_select :end_time %>
+    </paper-input-container>
 
     <paper-button id="submit">Create Auction</paper-button>
   <% end %>

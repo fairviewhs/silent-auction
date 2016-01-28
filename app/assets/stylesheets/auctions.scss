@@ -1,0 +1,28 @@
+div.auctionTitle {
+  width: 100%;
+
+  div.auctionName {
+    width: 70%;
+    float: left;
+  }
+
+  div.time {
+    width: 30%;
+    text-align: right;
+  }
+}
+
+div.error {
+  color: rgb(230, 70, 70);
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+  padding: 30px;
+}
+
+paper-material div.title {
+  font-weight: bold;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 18px;
+}

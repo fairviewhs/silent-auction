@@ -14,13 +14,17 @@
       <paper-item>You are not running any active auctions.</paper-item>
     <% else %>
       <% @auctions.each do |auction| %>
-        <paper-item>
-          <paper-item-body two-line>
-            <div><%= auction.name %>/div>
-            <div secondary><%= host %></div>
-          </paper-item-body>
-        </paper-item>
-        <paper-item>Item 2</paper-item>
+        <%= link_to(auction_path(id: auction.id), class: "body") do %>
+          <paper-item class="auctions">
+            <paper-item-body two-line>
+              <div class='auctionTitle'>
+                <div class='auctionName'><%= auction.name %></div>
+                <div class='time'><%= 'Ends in ' + time_ago_in_words(auction.end_time) %></div>
+              </div>
+              <div secondary><%= auction.host %></div>
+            </paper-item-body>
+          </paper-item>
+        <% end %>
       <% end %>
     <% end %>
 <% end %>
