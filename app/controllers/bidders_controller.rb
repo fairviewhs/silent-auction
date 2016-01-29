@@ -39,6 +39,5 @@ class BiddersController < ApplicationController
     def bidder_params
       params.require(:bidder).permit(:name, :email, :phone)
     end
-  end
 
 end
