@@ -20,8 +20,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
-gem 'polymer-elements-rails'
-gem 'polymer-rails', '~> 1.0.8'
+gem 'polymer-rails', '~>1.1.0'
+gem 'polymer-elements-rails', github: 'tikitikifoofoo/polymer-elements-rails'
 gem "paperclip", "~> 4.3"
 
 # Use ActiveModel has_secure_password

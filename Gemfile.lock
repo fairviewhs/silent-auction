@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/tikitikifoofoo/polymer-elements-rails.git
+  revision: 504f530d319d061781c03d241ccdf2d33c053a03
+  specs:
+    polymer-elements-rails (1.0.0.pre.rc.2)
+      polymer-rails (~> 1.0, >= 1.0.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -120,13 +127,10 @@ GEM
       mime-types
       mimemagic (= 0.3.0)
     pg (0.18.4)
-    polymer-elements-rails (1.0.1)
-      polymer-rails (~> 1.0, >= 1.0.3)
-    polymer-rails (1.0.8)
+    polymer-rails (1.1.0)
       nokogiri (~> 1.6)
       nokogumbo (~> 1.1)
       rails (>= 3.1.0)
-      sprockets (< 3.0.0)
     puma (2.15.3)
     rack (1.6.4)
     rack-test (0.6.3)
@@ -216,8 +220,8 @@ DEPENDENCIES
   jquery-rails
   paperclip (~> 4.3)
   pg
-  polymer-elements-rails
-  polymer-rails (~> 1.0.8)
+  polymer-elements-rails!
+  polymer-rails (~> 1.1.0)
   puma
   rails (= 4.2.3)
   sass-rails (~> 5.0)
