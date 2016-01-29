@@ -15,7 +15,7 @@
 /log/*
 !/log/.keep
 /tmp
-config/secrets.yml
+#config/secrets.yml
 .DS_Store
 public/
 
