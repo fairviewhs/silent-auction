@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/tikitikifoofoo/polymer-elements-rails.git
+  revision: 504f530d319d061781c03d241ccdf2d33c053a03
+  specs:
+    polymer-elements-rails (1.0.0.pre.rc.2)
+      polymer-rails (~> 1.0, >= 1.0.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -62,6 +69,10 @@ GEM
     capistrano3-puma (1.2.1)
       capistrano (~> 3.0)
       puma (>= 2.6)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.8)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
@@ -97,6 +108,7 @@ GEM
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.99)
+    mimemagic (0.3.0)
     mini_portile2 (2.0.0)
     minitest (5.8.3)
     multi_json (1.11.2)
@@ -108,14 +120,17 @@ GEM
     nokogumbo (1.4.7)
       nokogiri
     orm_adapter (0.5.0)
+    paperclip (4.3.2)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      cocaine (~> 0.5.5)
+      mime-types
+      mimemagic (= 0.3.0)
     pg (0.18.4)
-    polymer-elements-rails (1.0.1)
-      polymer-rails (~> 1.0, >= 1.0.3)
-    polymer-rails (1.0.8)
+    polymer-rails (1.1.0)
       nokogiri (~> 1.6)
       nokogumbo (~> 1.1)
       rails (>= 3.1.0)
-      sprockets (< 3.0.0)
     puma (2.15.3)
     rack (1.6.4)
     rack-test (0.6.3)
@@ -203,9 +218,10 @@ DEPENDENCIES
   devise
   jbuilder (~> 2.0)
   jquery-rails
+  paperclip (~> 4.3)
   pg
-  polymer-elements-rails
-  polymer-rails (~> 1.0.8)
+  polymer-elements-rails!
+  polymer-rails (~> 1.1.0)
   puma
   rails (= 4.2.3)
   sass-rails (~> 5.0)

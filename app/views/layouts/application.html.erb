@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= html_import_tag 'application'%>
+  <%= favicon_link_tag 'favicon.png' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -17,24 +18,16 @@
       <%= link_to "<paper-button>Log out</paper-button>".html_safe, destroy_admin_session_path(), method: :delete %>
     <% end %>
   </paper-toolbar>
-
-  <div id="content-outer">
-    <!-- <paper-toast text="Hello world!" opened><%= notice %><%= alert %></paper-toast> -->
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+  <!-- <paper-toast text="Hello world!" opened><%= notice %><%= alert %></paper-toast> -->
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <div class="wrapper">
     <%= yield %>
   </div>
-
-  <paper-toolbar id="footer" class="medium-tall">
-    <div class='title'><%= link_to "Silent Auction", root_path, class: "footer-title" %></div>
-    <p>Created by National Honor Society</p>
-    <%= link_to "Donations", donations_path, class: "bottom" %>
-    <%= link_to "New auction", new_auction_path, class: "bottom" %>
-    <%= link_to "About us", '#', class: "bottom" %>
-    <%= link_to "Credits", '#', class: "bottom" %>
-    <%= link_to "Fairview High School", 'http://fairviewhs.org', class: "bottom" %>
-    <%= link_to image_tag("nhs-logo.png", height: '50', id: 'footer-nhs-logo', class: 'bottom'), 'https://www.fairviewhs.org/sites/nhs', class: 'bottom' %>
-  </paper-toolbar>
-
+  <div class="footer">
+    Created with <%= image_tag("heart.png") %> by
+    <a class="blue" href="http://fairviewhs.org/sites/nhs" target="_blank">Fairview National Honor Society</a> and
+    <a class="blue" href="https://about.fairviewhs.org/" target="_blank">Fairview Web Team.</a>
+  </div>
 </body>
 </html>

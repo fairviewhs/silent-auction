@@ -1,17 +1,22 @@
 class AuctionsController < ApplicationController
+  before_action :authenticate_admin!, only: [:new, :create]
+  def show
+    @current_auction = Auction.find_by_id(params[:id])
+  end
+
   def new
     @auction = Auction.new
   end
 
   def create
-    #render :text => params
-    @newauction = Auction.new(auction_params)
+    @auction = Auction.new(auction_params)
 
-    if @newauction.save
-      flash[:success] = "Your auction has been made."
+    if @auction.save
+      @auction.admins << current_admin
+      flash[:notice] = "Your auction has been made."
       redirect_to root_path
     else
-      flash[:error] = "These was an error while saving"
+      flash[:notice] = "These was an error while saving"
       render :new
     end
   end

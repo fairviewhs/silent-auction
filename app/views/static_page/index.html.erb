@@ -1,26 +1,51 @@
-<paper-material elevation="1" class="maincontent">
-  Welcome to Silent Auction. A project under National Honor Society.
+<% if !admin_signed_in? %>
+  <paper-material elevation="1" class="maincontent">
+    Welcome to Silent Auction. A project under National Honor Society.
 
-  The website is still under construction.
-</paper-material>
-
-<% if admin_signed_in? %>
+    The website is still under construction.
+  </paper-material>
+<% else %>
   <paper-material elevation="1" class="maincontent">
     <div class="titlebar">
       <div class="title">Your auctions</div>
       <%= link_to "<paper-button class='content' id='newauction'>New Auction</paper-button>".html_safe, new_auction_path() %>
     </div>
-    <% if @auctions.empty? %>
+    <% if @myauctions.empty? %>
       <paper-item>You are not running any active auctions.</paper-item>
     <% else %>
-      <% @auctions.each do |auction| %>
-        <paper-item>
-          <paper-item-body two-line>
-            <div><%= auction.name %>/div>
-            <div secondary><%= host %></div>
-          </paper-item-body>
-        </paper-item>
-        <paper-item>Item 2</paper-item>
+      <% @myauctions.each do |auction| %>
+        <%= link_to(auction_path(id: auction.id), class: "body") do %>
+          <paper-item class="auctions">
+            <paper-item-body two-line>
+              <div class='auctionTitle'>
+                <div class='auctionName'><%= auction.name %></div>
+                <div class='time'><%= 'Ends in ' + time_ago_in_words(auction.end_time) %></div>
+              </div>
+              <div secondary><%= auction.host %></div>
+            </paper-item-body>
+          </paper-item>
+        <% end %>
       <% end %>
     <% end %>
+<% end %>
+
+<% if !@auctions.empty? %>
+  <paper-material elevation="1" class="maincontent">
+    <div class="titlebar">
+      <div class="title">Open Auctions</div>
+    </div>
+    <% @auctions.each do |auction| %>
+      <%= link_to(auction_path(id: auction.id), class: "body") do %>
+        <paper-item class="auctions">
+          <paper-item-body two-line>
+            <div class='auctionTitle'>
+              <div class='auctionName'><%= auction.name %></div>
+              <div class='time'><%= 'Ends in ' + time_ago_in_words(auction.end_time) %></div>
+            </div>
+            <div secondary><%= auction.host %></div>
+          </paper-item-body>
+        </paper-item>
+        <% end %>
+    <% end %>
+  </paper-material
 <% end %>

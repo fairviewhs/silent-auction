@@ -1,5 +1,25 @@
-<h1>New Item</h1>
+<paper-material elevation="1" class="maincontent">
+  <h2>New Item</h2>
 
-<%= render 'form' %>
+  <%= form_for(@item, url: items_path(auction_id: params[:auction_id]), html: {id: "form", method: :post}) do |f| %>
+    <paper-input-container always-float-label>
+      <label>Name</label>
+      <%= f.text_field :name, autofocus: true %>
+    </paper-input-container>
 
-<%= link_to 'Back', items_path %>
+    <paper-input-container always-float-label>
+      <label>Price</label>
+      <%= f.text_field :price, 'type': 'number' %>
+    </paper-input-container>
+
+    <paper-input-container always-float-label textarea>
+      <label>Description</label>
+      <%= f.text_field :description %>
+    </paper-input-container>
+
+    <%= f.file_field :picture %>
+    <br><br>
+
+    <paper-button id="submit">Create Item</paper-button>
+  <% end %>
+</paper-material>

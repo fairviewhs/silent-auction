@@ -15,7 +15,9 @@
 /log/*
 !/log/.keep
 /tmp
-config/secrets.yml
+#config/secrets.yml
+.DS_Store
+public/
 
 # Ignore idea IDE's directory
 .idea/

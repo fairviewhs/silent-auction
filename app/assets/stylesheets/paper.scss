@@ -7,6 +7,7 @@ paper-material.maincontent {
   padding-left: 30px;
   padding-right: 30px;
   padding-bottom: 20px;
+  overflow: hidden;
 }
 
 paper-button.content {
@@ -28,36 +29,6 @@ div.titlebar {
   }
 }
 
-
-/*
-100vh - 158px basically is the height of the screen minus
-the footer (64px), the header (64px), and 10 extra pixels
-*/
-#content-outer {
-  margin-top: 0;
-  margin-bottom: 0;
+paper-item.auctions {
   width: 100%;
-  min-height: calc(100vh - 50px);
-  height: auto;
-  position: relative;
-}
-
-#footer {
-  margin-top: 50px;
-
-  a:not(.footer-title) {
-    opacity: 0.8;
-    margin-left: 10px;
-    margin-right: 10px;
-
-    &:hover {
-      opacity: 1;
-    }
-  }
-
-  #footer-nhs-logo {
-    position: absolute;
-    right: 16px;
-    bottom: 16px;
-  }
 }

@@ -1,8 +1,10 @@
 class StaticPageController < ApplicationController
   def index
-    @auctions  = []
+    @myauctions  = []
+    @auctions = Auction.all
     if admin_signed_in?
-      @auctions = current_admin.auctions if current_admin.auctions != nil
+      @myauctions = current_admin.auctions if current_admin.auctions != nil
     end
+    @auctions = @auctions - @myauctions
   end
 end
