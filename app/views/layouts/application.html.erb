@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
 <head>
   <title>SilentAuction</title>
@@ -19,9 +19,14 @@
     <% end %>
   </paper-toolbar>
 
-  <!-- <paper-toast text="Hello world!" opened><%= notice %><%= alert %></paper-toast> -->
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <div class="flashes">
+    <% if notice %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+  </div>
   <div class="wrapper">
     <%= yield %>
   </div>

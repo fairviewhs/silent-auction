@@ -74,6 +74,25 @@ div {
   }
 }
 
+div.flashes {
+  text-align: center;
+  height: 30px;
+
+  p.notice {
+    background-color: rgb(120, 222, 136);
+    margin: 0;
+    height: 100%;
+    line-height: 30px;
+  }
+
+  p.alert {
+    background-color: rgb(251, 119, 119);
+    margin: 0;
+    height: 100%;
+    line-height: 30px;
+  }
+}
+
 div.footer {
   height: 18px;
   width: 75%;
