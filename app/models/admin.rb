@@ -7,4 +7,5 @@ class Admin < ActiveRecord::Base
   has_and_belongs_to_many :auctions
 
   validates :name, presence: true
+  validates_format_of :email, :with => Devise::email_regexp
 end

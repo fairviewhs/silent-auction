@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_admin!
+  before_action :authenticate_admin!, only: [:new, :create, :edit, :destroy]
 
   # GET /items
   # GET /items.json
@@ -11,6 +11,8 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
+    @auction = Auction.find_by_id(@item.auction_id)
+    @bid = Bid.new
   end
 
   # GET /items/new
@@ -55,7 +57,7 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

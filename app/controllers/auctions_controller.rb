@@ -38,6 +38,9 @@ class AuctionsController < ApplicationController
 
   def destroy
     @auction = Auction.find_by_id(params[:id])
+    @auction.items.each do |item|
+      item.destroy
+    end
     if @auction.destroy
       flash[:notice] = "Auction deleted."
       redirect_to root_path
