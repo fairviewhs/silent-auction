@@ -10,7 +10,7 @@
         <%= link_to "<paper-button class='content'>Edit</paper-button>".html_safe, edit_auction_path() %>
       <% end %>
     </div>
-    <p><b>Description: </b><%= @current_auction.description %></p>
+    <p class="itemDescription"><b>Description: </b><%= @current_auction.description %></p>
     <p><b>Host: </b><%= @current_auction.host %></p>
     <p><b>Start Time: </b><%= @current_auction.start_time.strftime("%x") %></p>
     <p><b>End Time: </b><%= @current_auction.end_time.strftime("%x") %></p>
