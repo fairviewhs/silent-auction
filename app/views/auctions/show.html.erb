@@ -12,8 +12,8 @@
     </div>
     <p><b>Description: </b><%= @current_auction.description %></p>
     <p><b>Host: </b><%= @current_auction.host %></p>
-    <p><b>Start Time: </b><%= @current_auction.start_time.strftime("%H:%M on %x") %></p>
-    <p><b>End Time: </b><%= @current_auction.end_time.strftime("%H:%M on %x") %></p>
+    <p><b>Start Time: </b><%= @current_auction.start_time.strftime("%x") %></p>
+    <p><b>End Time: </b><%= @current_auction.end_time.strftime("%x") %></p>
 </paper-material>
 
 <paper-material elevation="1" class="maincontent">

@@ -11,7 +11,15 @@
       <%= link_to "<paper-button class='content'>Edit</paper-button>".html_safe, edit_item_path(@item.id) %>
     <% end %>
   </div>
-  <div class="picture"><%= image_tag @item.picture.url(:medium) %></div>
+  <div class="pictureGroup">
+    <div class="Itempicture"><%= image_tag @item.picture.url(:medium) %></div>
+    <% if @item.picture2.exists? %>
+      <div class="Itempicture"><%= image_tag @item.picture2.url(:medium) %></div>
+    <% end %>
+    <% if @item.picture3.exists? %>
+      <div class="Itempicture"><%= image_tag @item.picture3.url(:medium) %></div>
+    <% end %>
+  </div>
 
   <p>
     <strong>Name:</strong>
@@ -42,42 +50,52 @@
   <% end %>
 </paper-material>
 
-<paper-material elevation="1" class="maincontent">
-  <h2>Submit a Bid for this item</h2>
-  <%= form_for(@bid, url: bids_path(current_item: @item),
-               html: {method: :post}) do |f| %>
-   <% if @bid.errors.any? %>
-      <div class="errors">
-        <h4>This form contains the following errors:</h4>
-       <ul>
-         <% @bid.errors.full_messages.each do |msg| %>
-           <li><%= msg %></li>
-         <% end %>
-       </ul>
-     </div>
-   <% end %>
-    <paper-input-container always-float-label class="field">
-      <%= f.label :name, 'Your Name' %><br>
-      <%= f.text_field :name %>
-    </paper-input-container>
-    <paper-input-container always-float-label class="field">
-      <%= f.label :email, 'Your Email' %><br>
-      <%= f.text_field :email %>
-    </paper-input-container>
-    <paper-input-container always-float-label class="field">
-      <%= f.label :phone, 'Your Phone Number' %></br>
-      <%= f.text_field :phone %>
-    </paper-input-container>
-    <paper-input-container always-float-label class="field number-field">
-      <%= f.label :bid_price, 'Bid ($)' %><br>
-      <%= f.number_field :bid_price, step: 1, value: maxPrice + 1 %>
-    </paper-input-container>
-    <div class="actions">
-      <%= f.submit "Submit Bid", data: { disable_with: 'Submitting...' } %>
-    </div>
-  <% end %>
+<% if @auction.start_time > Date.today %>
+  <paper-material elevation="1" class="maincontent">
+    <h2>The auction has not started yet. Please check back later!</h2>
+  </paper-material>
+<% elsif @auction.end_time > Date.today %>
+  <paper-material elevation="1" class="maincontent">
+    <h2>Submit a Bid for this item</h2>
+    <%= form_for(@bid, url: bids_path(current_item: @item),
+                 html: {method: :post}) do |f| %>
+     <% if @bid.errors.any? %>
+        <div class="errors">
+          <h4>This form contains the following errors:</h4>
+         <ul>
+           <% @bid.errors.full_messages.each do |msg| %>
+             <li><%= msg %></li>
+           <% end %>
+         </ul>
+       </div>
+     <% end %>
+      <paper-input-container always-float-label class="field">
+        <%= f.label :name, 'Your Name' %><br>
+        <%= f.text_field :name %>
+      </paper-input-container>
+      <paper-input-container always-float-label class="field">
+        <%= f.label :email, 'Your Email' %><br>
+        <%= f.text_field :email %>
+      </paper-input-container>
+      <paper-input-container always-float-label class="field">
+        <%= f.label :phone, 'Your Phone Number' %></br>
+        <%= f.text_field :phone %>
+      </paper-input-container>
+      <paper-input-container always-float-label class="field number-field">
+        <%= f.label :bid_price, 'Bid ($)' %><br>
+        <%= f.number_field :bid_price, step: 1, value: maxPrice + 1 %>
+      </paper-input-container>
+      <div class="actions">
+        <%= f.submit "Submit Bid", data: { disable_with: 'Submitting...' } %>
+      </div>
+    <% end %>
 
-</paper-material>
+  </paper-material>
+<% else %>
+  <paper-material elevation="1" class="maincontent">
+    <h2>The auction has finished.</h2>
+  </paper-material>
+<% end %>
 
 <paper-material elevation="1" class="maincontent">
   <%= link_to "<paper-button class='content'>Go Back to Auction</paper-button>".html_safe, auction_path(@auction.id) %>

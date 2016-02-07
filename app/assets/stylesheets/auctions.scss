@@ -50,6 +50,16 @@ paper-material div.titleSection {
   }
 }
 
+div.pictureGroup {
+  width: 100%;
+  display:block;
+  overflow:auto;
+  div.Itempicture {
+    float: left;
+    padding: 10px;
+  }
+}
+
 .cardShadow {
     -moz-box-shadow: 3px 3px 4px #ccc;
     -webkit-box-shadow: 3px 3px 4px #ccc;
