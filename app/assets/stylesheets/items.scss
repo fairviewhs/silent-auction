@@ -9,8 +9,15 @@ p.itemDescription {
 
 table {
   width: 100%;
+  overflow: auto;
+  white-space: nowrap;
   tr#head {
     font-weight: bold;
     width: 33%;
+  }
+
+  tr#auctionhead {
+    font-weight: bold;
+    width: 25%;
   }
 }

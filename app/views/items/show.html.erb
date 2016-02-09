@@ -82,6 +82,10 @@
         <%= f.label :phone, 'Your Phone Number' %></br>
         <%= f.text_field :phone %>
       </paper-input-container>
+      <paper-input-container always-float-label class="field">
+        <%= f.label :address, 'Your Address' %></br>
+        <%= f.text_field :address %>
+      </paper-input-container>
       <paper-input-container always-float-label class="field number-field">
         <%= f.label :bid_price, 'Bid ($)' %><br>
         <%= f.number_field :bid_price, step: 1, value: maxPrice + 1 %>

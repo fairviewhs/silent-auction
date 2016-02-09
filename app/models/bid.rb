@@ -6,6 +6,7 @@ class Bid < ActiveRecord::Base
   validates :email, presence: true
   validates_format_of :email,:with => Devise::email_regexp
   validates :phone, presence: true
+  validates :address, presence: true
 
   def higher_price(item)
     if item.bids.count > 0
