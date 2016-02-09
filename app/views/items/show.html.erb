@@ -4,7 +4,7 @@
 
 <paper-material elevation="1" class="maincontent">
   <div class="titleSection">
-    <div class="title"><%= @item.name %> ($<%= @item.bids.exists? ? @item.bids.last.bid_price : @item.price %>)</div>
+    <div class="title"><%= @item.name %> ($<%= @item.bids.exists? ? @item.bids.last.bid_price.round : @item.price.round %>)</div>
     <% if admin_signed_in? && @auction.admins.include?(current_admin) %>
       <%= link_to "<paper-button class='content'>Delete</paper-button>".html_safe, item_path(@item.id), method: :delete,
           :data => {:confirm => 'Are you sure you would like to delete the item?'} %>
@@ -32,12 +32,12 @@
     <%= @item.description %>
   </p>
 
-  <% maxPrice = @item.price %>
+  <% maxPrice = @item.price.round %>
   <% if @item.bids.exists? %>
     <p>
       <strong>Current Highest Bid</strong>
-      $<%= @item.bids.last.bid_price %>
-      <% maxPrice = @item.bids.last.bid_price %>
+      $<%= @item.bids.last.bid_price.round %>
+      <% maxPrice = @item.bids.last.bid_price.round %>
     </p>
     <p id="itemBidder">
       <strong>Current Highest Bidder</strong>
@@ -46,7 +46,7 @@
   <% else %>
     <p>
       <strong>Price:</strong>
-      <%= @item.price %>
+      <%= @item.price.round %>
     </p>
   <% end %>
 </paper-material>
@@ -88,7 +88,7 @@
       </paper-input-container>
       <paper-input-container always-float-label class="field number-field">
         <%= f.label :bid_price, 'Bid ($)' %><br>
-        <%= f.number_field :bid_price, step: 1, value: maxPrice + 1 %>
+        <%= f.number_field :bid_price, step: 1, value: maxPrice + 10 %>
       </paper-input-container>
       <div class="actions">
         <%= f.submit "Submit Bid", data: { disable_with: 'Submitting...' } %>
