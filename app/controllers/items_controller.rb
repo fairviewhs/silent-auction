@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_admin!, only: [:new, :create, :edit, :destroy]
+  before_action :authenticate_admin!, only: [:new, :create, :edit, :destroy, :bidders]
 
   # GET /items
   # GET /items.json
@@ -60,6 +60,10 @@ class ItemsController < ApplicationController
       format.html { redirect_to root_path, notice: 'Item was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def bidders
+    set_item
   end
 
   private

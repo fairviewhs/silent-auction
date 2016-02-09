@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admins, :controllers => { registrations: 'registrations' }
   resources :items
+  get 'items/:id/bidders' => 'items#bidders', as: :item_bidders
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -8,9 +9,10 @@ Rails.application.routes.draw do
   root to: 'static_page#index'
 
   resources :auctions
+  get 'auctions/:id/bidders' => 'auctions#bidders', as: :auction_bidders
 
   resources :donations, only: [:index, :new, :create]
-  resources :bids, only: [:create]
+  resources :bids, only: [:create, :destroy]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

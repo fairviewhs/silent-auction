@@ -8,6 +8,7 @@
         <%= link_to "<paper-button class='content'>Delete</paper-button>".html_safe, auction_path(), method: :delete,
             :data => {:confirm => 'Are you sure you would like to delete the auction?'} %>
         <%= link_to "<paper-button class='content'>Edit</paper-button>".html_safe, edit_auction_path() %>
+        <%= link_to "<paper-button class='content'>Bidders</paper-button>".html_safe, auction_bidders_path() %>
       <% end %>
     </div>
     <p class="itemDescription"><b>Description: </b><%= @current_auction.description %></p>

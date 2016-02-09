@@ -1,0 +1,43 @@
+<paper-material elevation="1" class="maincontent">
+  <h2>Bidders for the whole auction</h2>
+  <table>
+    <tr id="head">
+      <td>Name</td>
+      <td>Bid Price</td>
+      <td>Date</td>
+      <td></td>
+    </tr>
+    <% @totalBidders.each do |bid| %>
+        <tr>
+          <td><%= bid.name %></td>
+          <td><%= bid.bid_price %></td>
+          <td><%= bid.created_at %></td>
+          <td><%= link_to "<paper-button class='content'>Delete</paper-button>".html_safe, bid_path(bid), method: :delete,
+              :data => {:confirm => 'Are you sure you would like to delete the bid?'} %></td>
+        </tr>
+    <% end %>
+  </table>
+</paper-material>
+
+<paper-material elevation="1" class="maincontent">
+  <h2>Lottery</h2>
+  <% if @luckyWinner != nil %>
+    <p>
+      <b>Name: </b><%= @luckyWinner.name %>
+    </p>
+    <p>
+      <b>Phone: </b><%= @luckyWinner.phone %>
+    </p>
+    <p>
+      <b>Email: </b><%= @luckyWinner.email %>
+    </p>
+    <br>
+    <p><i>Note: </i>A name is generated everytime this page is loaded.</p>
+  <% else %>
+    No one has bid yet!
+  <% end %>
+</paper-material>
+
+<paper-material elevation="1" class="maincontent">
+  <%= link_to "<paper-button class='content'>Go Back to Auction</paper-button>".html_safe, auction_path(@auction.id) %>
+</paper-material>

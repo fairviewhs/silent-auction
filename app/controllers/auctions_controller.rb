@@ -1,5 +1,5 @@
 class AuctionsController < ApplicationController
-  before_action :authenticate_admin!, only: [:new, :create, :edit, :destroy]
+  before_action :authenticate_admin!, only: [:new, :create, :edit, :destroy, :bidders]
   def show
     @current_auction = Auction.find_by_id(params[:id])
   end
@@ -47,6 +47,20 @@ class AuctionsController < ApplicationController
     else
       flash[:error] = "Error when deleting auction."
       render :show
+    end
+  end
+
+  def bidders
+    @auction = Auction.find_by_id(params[:id])
+    @luckyWinner = nil
+    @totalBidders = Array.new
+    @auction.items.each do |item|
+      item.bids.each do |bid|
+        @totalBidders.push(bid)
+      end
+    end
+    if (@totalBidders.length > 0)
+      @luckyWinner = @totalBidders[rand(@totalBidders.length)]
     end
   end
 

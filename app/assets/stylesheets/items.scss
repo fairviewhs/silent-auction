@@ -6,3 +6,11 @@ p.itemDescription {
   width: 100%;
   word-wrap: break-word;
 }
+
+table {
+  width: 100%;
+  tr#head {
+    font-weight: bold;
+    width: 33%;
+  }
+}
