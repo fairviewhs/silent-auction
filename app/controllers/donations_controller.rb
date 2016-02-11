@@ -32,6 +32,10 @@ class DonationsController < ApplicationController
 
   def destroy
     @donation = Donation.find_by_id(params[:id])
+    @donation.destroy
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

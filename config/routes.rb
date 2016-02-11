@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :auctions
   get 'auctions/:id/bidders' => 'auctions#bidders', as: :auction_bidders
 
-  resources :donations, only: [:index, :new, :create]
+  resources :donations, only: [:index, :new, :create, :destroy]
   resources :bids, only: [:create, :destroy]
 
   # Example of regular route:

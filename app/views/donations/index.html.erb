@@ -13,7 +13,8 @@
           <paper-item-body two-line>
             <div><%= donation.name %></div>
             <div secondary>
-              <%= donation.email %> | <%= donation.phone %> | <%= donation.amount %>
+              <%= donation.email %> | <%= donation.phone %> | <%= donation.amount %> |
+              <%= link_to 'Destroy', donation, method: :delete, remote: true, data: { confirm: 'Are you sure?' }, class: 'link' %>
             </div>
           </paper-item-body>
         <% else %>
