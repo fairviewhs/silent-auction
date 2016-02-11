@@ -56,7 +56,10 @@ ActiveRecord::Schema.define(version: 20160209012526) do
     t.date     "end_time"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "donation_id"
   end
+
+  add_index "auctions", ["donation_id"], name: "index_auctions_on_donation_id", using: :btree
 
   create_table "bids", force: :cascade do |t|
     t.integer  "item_id"
@@ -76,7 +79,10 @@ ActiveRecord::Schema.define(version: 20160209012526) do
     t.string   "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "auction_id"
   end
+
+  add_index "donations", ["auction_id"], name: "index_donations_on_auction_id", using: :btree
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
@@ -107,4 +113,5 @@ ActiveRecord::Schema.define(version: 20160209012526) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "donations", "auctions"
 end

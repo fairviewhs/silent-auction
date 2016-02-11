@@ -9,7 +9,16 @@
     <p>Donors who have made a pledge:</p>
     <% @donations.each do |donation| %>
       <paper-item>
-        <div><%= donation.name %></div>
+        <% if admin_signed_in? %>
+          <paper-item-body two-line>
+            <div><%= donation.name %></div>
+            <div secondary>
+              <%= donation.email %> | <%= donation.phone %> | <%= donation.amount %>
+            </div>
+          </paper-item-body>
+        <% else %>
+          <div><%= donation.name %></div>
+        <% end %>
       </paper-item>
     <% end %>
   <% else %>

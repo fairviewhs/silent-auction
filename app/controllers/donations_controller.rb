@@ -1,4 +1,6 @@
 class DonationsController < ApplicationController
+  before_action :authenticate_admin!, only: [:show, :destroy]
+
   def index
     @donations = Donation.all
   end
@@ -10,18 +12,26 @@ class DonationsController < ApplicationController
     end
   end
 
+  def show
+    @donation = Donation.find_by_id(params[:id])
+  end
+
   def create
     @donation = Donation.new(donation_params)
 
     if @donation.save
       flash[:success] = "Thank you for your contribution."
       respond_to do |format|
-        format.js 
+        format.js
       end
     else
       flash[:error] = "These was an error while saving"
       render :new
     end
+  end
+
+  def destroy
+    @donation = Donation.find_by_id(params[:id])
   end
 
   private
