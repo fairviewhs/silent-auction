@@ -1,28 +1,30 @@
-<div class='container'>
-  <h3>This is the index page for donations.</h3>
-  <div id='pledge-cancel-button'>
-    <div id='pledge-x-upper'></div>
-    <div id='pledge-x-lower'></div>
-  </div>
-  <div id='pledge-button'><%= link_to 'Make a pledge', new_donation_path, remote: true %></div>
-  <% if @donations.any? %>
-    <p>Donors who have made a pledge:</p>
-    <% @donations.each do |donation| %>
-      <paper-item>
-        <% if admin_signed_in? %>
-          <paper-item-body two-line>
+<paper-material elevation="1" class="maincontent">
+  <div class='container'>
+    <h3>This is the index page for donations.</h3>
+    <div id='pledge-cancel-button'>
+      <div id='pledge-x-upper'></div>
+      <div id='pledge-x-lower'></div>
+    </div>
+    <div id='pledge-button'><%= link_to 'Make a pledge', new_donation_path, remote: true %></div>
+    <% if @donations.any? %>
+      <p>Donors who have made a pledge:</p>
+      <% @donations.each do |donation| %>
+        <paper-item>
+          <% if admin_signed_in? %>
+            <paper-item-body two-line>
+              <div><%= donation.name %></div>
+              <div secondary>
+                <%= donation.email %> | <%= donation.phone %> | <%= donation.amount %> |
+                <%= link_to 'Destroy', donation, method: :delete, remote: true, data: { confirm: 'Are you sure?' }, class: 'link' %>
+              </div>
+            </paper-item-body>
+          <% else %>
             <div><%= donation.name %></div>
-            <div secondary>
-              <%= donation.email %> | <%= donation.phone %> | <%= donation.amount %> |
-              <%= link_to 'Destroy', donation, method: :delete, remote: true, data: { confirm: 'Are you sure?' }, class: 'link' %>
-            </div>
-          </paper-item-body>
-        <% else %>
-          <div><%= donation.name %></div>
-        <% end %>
-      </paper-item>
+          <% end %>
+        </paper-item>
+      <% end %>
+    <% else %>
+      <p>There have been no donations made at this point. Be the first to make the pledge!</p>
     <% end %>
-  <% else %>
-    <p>There have been no donations made at this point. Be the first to make the pledge!</p>
-  <% end %>
-</div>
+  </div>
+</paper-material>
