@@ -26,8 +26,10 @@ div.card {
   float: left;
 
   div.cardTitle {
-    height: 24px;
     width: 100%;
+    word-wrap: break-word;
+    font-size: 18px;
+    margin-bottom: 5px;
   }
 }
 
