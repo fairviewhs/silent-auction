@@ -1,0 +1,33 @@
+<paper-material elevation="1" class="maincontent">
+  <div class="titleSection">
+    <div class="title"><%= auction.name %></div>
+    <% if(session.user && session.user.isAdmin(auction)){ %>
+      <%= link_to "<paper-button class='content'>Delete</paper-button>", auction.delete_path() %>
+      <%= link_to "<paper-button class='content'>Edit</paper-button>", auction.edit_path() %>
+      <%= link_to "<paper-button class='content'>Bidders</paper-button>", auction.bidders_path() %>
+    <% } %>
+  </div>
+  <p class="itemDescription"><b>Description: </b><%= auction.description %></p>
+  <p><b>Host: </b><%= auction.host %></p>
+  <p><b>Start Time: </b><%= auction.human_start_time() %></p>
+  <p><b>End Time: </b><%= auction.human_end_time() %></p>
+</paper-material>
+
+<paper-material elevation="1" class="maincontent">
+  <% if(session.user && session.user.isAdmin(auction)){ %>
+<%= link_to "<paper-button class='content'>New Item</paper-button>", auction.new_item_path() %>
+<% if(auction.items.length == 0){%>
+  <p>There are currently no items in the auction</p>
+<% }else{ %>
+  <div id="cardGrid">
+    <% auction.items.function(item){%>
+      <%= link_to(item_path(id: item.id), class: "body") do %>
+        <div class="card">
+          <div class="picture"><%= image_tag item.picture.url(:medium) %></div>
+          <div class="cardTitle"><%= item.name %></div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+</paper-material>
