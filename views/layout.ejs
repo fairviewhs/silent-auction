@@ -2,34 +2,63 @@
 <html>
   <head>
     <title>SilentAuction</title>
-
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js">
+    </script>
+    <link rel="import" href="bower_components/polymer/polymer.html">
+    <link rel="import" href="bower_components/paper-button/paper-button.html">
+    <link rel="import" href="bower_components/paper-toolbar/paper-toolbar.html">
+    <link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html">
+    <link rel="import" href="bower_components/paper-input/paper-input-container.html">
+    <link rel="import" href="bower_components/paper-material/paper-material.html">
+    <link rel="import" href="bower_components/paper-toast/paper-toast.html">
+    <link rel="import" href="bower_components/paper-input/paper-input-char-counter.html">
+    <link rel="import" href="bower_components/paper-input/paper-input-error.html">
+    <link rel="import" href="bower_components/paper-item/paper-item.html">
+    <link rel="import" href="bower_components/paper-item/paper-item-body.html">
+    <link rel="import" href="bower_components/iron-autogrow-textarea/iron-autogrow-textarea.html">
   </head>
-<body>
-<paper-toolbar>
-  <div class='title'><%= link_to "Silent Auction", root_path %></div>
-  <% if !admin_signed_in? %>
-    <%= link_to "<paper-button>Log in</paper-button>".html_safe, new_admin_session_path() %>
-    <%= link_to "<paper-button>Sign up</paper-button>".html_safe, new_admin_registration_path() %>
-  <% else %>
-    <%= link_to "<paper-button>Log out</paper-button>".html_safe, destroy_admin_session_path(), method: :delete %>
-  <% end %>
-</paper-toolbar>
+  <body>
+    <paper-toolbar>
+      <div class='title'><a href="/">Silent Auction</a></div>
+      <% if(!session.user){ %>
+        <a href="/login">
+          <paper-button>Log in</paper-button>
+        </a>
+        <a href="/register">
+          <paper-button>Sign up</paper-button>
+        </a>
+      <% }else{ %>
+        <a href="/logout">
+          <paper-button>Log out</paper-button>
+        </a>
+      <% } %>
+    </paper-toolbar>
 
-<div class="flashes">
-  <% if notice %>
-    <p class="notice"><%= notice %></p>
-  <% end %>
-  <% if alert %>
-    <p class="alert"><%= alert %></p>
-  <% end %>
-</div>
-<div class="wrapper">
-  <%= yield %>
-</div>
-<div class="footer">
-  Created with <%= image_tag("heart.png") %> by
-  <a class="blue" href="http://fairviewhs.org/sites/nhs" target="_blank">Fairview National Honor Society</a> and
-  <a class="blue" href="https://about.fairviewhs.org/" target="_blank">Fairview Web Team.</a>
-</div>
-</body>
+    <div class="flashes">
+      <% if(session.notice){ %>
+        <p class="notice"><%= session.notice %></p>
+      <% } %>
+      <% if(session.alert){ %>
+        <p class="alert"><%= session.alert %></p>
+      <% } %>
+    </div>
+    <div class="wrapper">
+      <%- body %>
+    </div>
+    <div class="footer">
+      Created with <img src="heart.png"></img> by
+      <a class="blue" href="http://fairviewhs.org/sites/nhs" target="_blank">Fairview National Honor Society</a> and
+      <a class="blue" href="https://about.fairviewhs.org/" target="_blank">Fairview Web Team.</a>
+    </div>
+    <script>
+      document.addEventListener('WebComponentsReady', function() {
+        var input = document.querySelector('paper-input');
+        var button = document.querySelector('paper-button');
+        var greeting = document.getElementById("greeting");
+        button.addEventListener('click', function() {
+          greeting.textContent = 'Hello, ' + input.value;
+        });
+      });
+    </script>
+  </body>
 </html>
