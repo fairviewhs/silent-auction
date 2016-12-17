@@ -1,0 +1,30 @@
+<paper-material elevation="1" class="maincontent">
+  <h2><%= action.name %> Item</h2>
+  <form method="post" action="<%= action.url %>" enctype='multipart/form-data'>
+    <paper-input-container always-float-label>
+      <label>Name</label>
+      <input name='name' value='<%= item.name || ""%>' required></input>
+    </paper-input-container>
+
+    <paper-input-container always-float-label>
+      <label>Price</label>
+      <input name='price' type="number" min="1" value='<%= item.name || ""%>' required></input>
+    </paper-input-container>
+
+    <paper-input-container always-float-label textarea>
+      <label>Description</label>
+      <textarea name='price'>
+        <%= item.description || ""%>
+      </textarea>
+    </paper-input-container>
+
+    <paper-input-container always-float-label textarea>
+      <label>The first picture will be the thumbnail icon. You can upload up to 3 pictures.</label>
+    </paper-input-container>
+    <vaadin-upload form-data-name="image1"></vaadin-upload>
+    <vaadin-upload form-data-name="image2"></vaadin-upload>
+    <vaadin-upload form-data-name="image3"></vaadin-upload>
+    <br><br>
+    <paper-button id="submit"><%= action.name %> Item</paper-button>
+  </form>
+</paper-material>

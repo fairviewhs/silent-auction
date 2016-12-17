@@ -1,0 +1,27 @@
+<div id="pledge-form">
+  <form method="post" action="<%= action %>">
+    <paper-input-container always-float-label class="field">
+      <label>Your Name</label>
+      <input name='name' value='<%= donator.name || ""%>' required></input>
+    </paper-input-container>
+
+    <paper-input-container always-float-label class="field">
+      <label>Your Email</label>
+      <input name='email' value='<%= donator.email || ""%>' required></input>
+    </paper-input-container>
+
+    <paper-input-container always-float-label class="field">
+      <label>Your Phone Number: (123)-456-7890</label>
+      <input name='phone' value='<%= donator.phone || ""%>' required></input>
+    </paper-input-container>
+
+    <paper-input-container always-float-label class="field number-field">
+      <label>Amount Pledged ($)</label>
+      <input type="number" name="amount" value="20" min="1" step="5">
+    </paper-input-container>
+
+    <div class="actions">
+      <paper-button id="submit">Take pledge</paper-button>
+    </div>
+  </form>
+</div>

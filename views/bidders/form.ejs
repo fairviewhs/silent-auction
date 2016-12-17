@@ -1,0 +1,25 @@
+<form method="post" action="<%=  %>">
+  <paper-input-container always-float-label class="field">
+    <label>Your Name</label>
+    <input name='name' value='<%= user.name || ""%>' required></input>
+  </paper-input-container>
+
+  <paper-input-container always-float-label class="field">
+    <label>Your Email</label>
+    <input name='email' value='<%= user.email || ""%>' required></input>
+  </paper-input-container>
+
+  <paper-input-container always-float-label class="field">
+    <label>Your Phone Number: (123)-456-7890</label>
+    <input name='phone' value='<%= user.phone || ""%>' required></input>
+  </paper-input-container>
+
+  <paper-input-container always-float-label class="field number-field">
+    <label>Bid ($)</label>
+    <input type="number" name="bid_price" value="<%= min_bid %>" min="<%= min_bid %>" step="1">
+  </paper-input-container>
+
+  <div class="actions">
+    <paper-button id="submit">Place Bid</paper-button>
+  </div>
+</form>

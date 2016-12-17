@@ -1,0 +1,44 @@
+<paper-material elevation="1" class="maincontent">
+  <h2>Bidders for the whole auction</h2>
+  <table>
+    <tr id="auctionhead">
+      <td>Name</td>
+      <td>Phone</td>
+      <td>Email</td>
+      <td>Address</td>
+      <td></td>
+    </tr>
+    <% bidders.forEach(function(bid){ %>
+        <tr>
+          <td><%= bid.name %></td>
+          <td><%= bid.phone %></td>
+          <td><%= bid.email %></td>
+          <td><%= bid.address %></td>
+          <td><%= link_to("<paper-button class='content'>Delete</paper-button>", bid.delete_path()) %></td>
+        </tr>
+    <% } %>
+  </table>
+</paper-material>
+
+<paper-material elevation="1" class="maincontent">
+  <h2>Lottery</h2>
+  <% if(luckyWinner){ %>
+    <p>
+      <b>Name: </b><%= luckyWinner.name %>
+    </p>
+    <p>
+      <b>Phone: </b><%= luckyWinner.phone %>
+    </p>
+    <p>
+      <b>Email: </b><%= luckyWinner.email %>
+    </p>
+    <br>
+    <p><i>Note: </i>A name is generated everytime this page is loaded.</p>
+  <% }else if(hasLuckyWinner){ %>
+    No one has bid yet!
+  <% } %>
+</paper-material>
+
+<paper-material elevation="1" class="maincontent">
+  <%= link_to("<paper-button class='content'>Go Back to " + back.name + "</paper-button>", back.path %>
+</paper-material>

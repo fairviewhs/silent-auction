@@ -15,19 +15,20 @@
 
 <paper-material elevation="1" class="maincontent">
   <% if(session.user && session.user.isAdmin(auction)){ %>
-<%= link_to "<paper-button class='content'>New Item</paper-button>", auction.new_item_path() %>
-<% if(auction.items.length == 0){%>
-  <p>There are currently no items in the auction</p>
-<% }else{ %>
-  <div id="cardGrid">
-    <% auction.items.function(item){%>
-      <%= link_to(item_path(id: item.id), class: "body") do %>
-        <div class="card">
-          <div class="picture"><%= image_tag item.picture.url(:medium) %></div>
-          <div class="cardTitle"><%= item.name %></div>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-<% end %>
+    <%= link_to "<paper-button class='content'>New Item</paper-button>", auction.new_item_path() %>
+    <% if(auction.items.length == 0){%>
+      <p>There are currently no items in the auction</p>
+    <% }else{ %>
+      <div id="cardGrid">
+        <% auction.items.forEach(function(item){ %>
+          <a href="<%= item.get_path() %>" class="body">
+            <div class="card">
+              <div class="picture"><%= image_tag item.picture.url(:medium) %></div>
+              <div class="cardTitle"><%= item.name %></div>
+            </div>
+          </a>
+        <% }) %>
+      </div>
+    <% } %>
+  <% } %>
 </paper-material>
