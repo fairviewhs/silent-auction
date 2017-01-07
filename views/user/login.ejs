@@ -1,0 +1,33 @@
+<%# Ported from sessions/new %>
+<paper-material elevation="1" class="maincontent">
+  <h2>Log in</h2>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {id: "form"}) do |f| %>
+    <paper-input-container always-float-label>
+      <label>Email</label>
+      <%= f.email_field :email, autofocus: true %>
+    </paper-input-container>
+
+    <paper-input-container always-float-label>
+      <label>Password</label>
+      <%= f.password_field :password, autocomplete: "off" %>
+    </paper-input-container>
+
+    <% if devise_mapping.rememberable? -%>
+      <paper-checkbox id="rememberme"></paper-checkbox>
+      <%= f.check_box :remember_me, id: "rememberme", style: "display: none;" %>
+      <%= f.label :remember_me %>
+    <% end -%>
+    <br><br>
+    <paper-button id="submit">Log in</paper-button>
+  <% end %>
+
+  <hr>
+  <%= render "devise/shared/links" %>
+</paper-material>
+
+<paper-material elevation="1" class="maincontent">
+  <h3>Note:</h3>
+  The log in is meant for auction owners to be able to manage their auctions.
+  If you are simply an auction bidder, then you do not have an account.
+</paper-material>

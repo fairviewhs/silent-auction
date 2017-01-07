@@ -1,0 +1,20 @@
+<paper-material elevation="1" class="maincontent">
+  <h2>Forgot your password?</h2>
+
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, id: "form" }) do |f| %>
+    <%= devise_error_messages! %>
+
+    <paper-input-container alwaysFloatLabel="false">
+      <label>Email</label>
+      <%= f.email_field :email, autofocus: true %>
+    </paper-input-container>
+
+    <paper-button id="submit">Send me reset password instructions</paper-button>
+    <!-- <div class="actions">
+      <%= f.submit "Send me reset password instructions" %>
+    </div> -->
+  <% end %>
+
+  <hr>
+  <%= render "devise/shared/links" %>
+</paper-material>

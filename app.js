@@ -7,9 +7,6 @@ var expressLayouts = require('express-ejs-layouts');
 var multer  = require('multer');
 var upload = multer({ dest: 'uploads/' });
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-
 var app = express();
 
 // view engine setup
@@ -29,8 +26,16 @@ app.use(function(req,res,next){
   next();
 });
 
-app.use('/', index);
-app.use('/users', users);
+app.use('/', require('./routes/index'));
+app.use('/users', require('./routes/users'));
+app.use('/items', require('./routes/items'));
+app.use('/auctions', require('./routes/auctions'));
+app.use('/donations', require('./routes/donations'));
+app.use('/bids', require('./routes/bids'));
+
+// devise_for :admins, :controllers => { registrations: 'registrations' }
+// get 'items/:id/bidders' => 'items#bidders', as: :item_bidders
+// get 'auctions/:id/bidders' => 'auctions#bidders', as: :auction_bidders
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
