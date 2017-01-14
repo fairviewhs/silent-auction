@@ -3,8 +3,9 @@ var router = express.Router();
 var models  = require('../models');
 
 router.get('/', function(req, res, next) {
-  models.Auction.fineOne({
-  res.render('index', { auctions: [] });
+  models.Auction.fineAll({ }).then((auctions)=>{
+    res.render('index', { auctions: auctions });
+  });
 });
 
 router.get('/new', function(req, res, next) {
@@ -17,14 +18,7 @@ router.post('/new', function(req, res, next) {
 });
 
 router.get('/:id', function(req, res, next) {
-  models.Auction.fineOne({
-    where: { id: req.params.id },
-    include: [{
-      model: models.Item
-    }]
-  }).then((auction)=>{
-    res.render('items/show', { auction: auction });
-  });
+  res.render('items/show', { item: item });
 });
 
 router.post('/:id/destroy', function(req, res, next) {

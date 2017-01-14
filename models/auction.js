@@ -11,7 +11,9 @@ module.exports = function(sequelize, DataTypes) {
         Auction.hasMany(models.AuctionOwner);
         Auction.hasMany(models.Item);
         Auction.hasMany(models.Donation);
-      },
+      }
+    },
+    instanceMethods: {
       delete_path: function() {
         return "";
       },

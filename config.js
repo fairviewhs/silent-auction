@@ -1,4 +1,7 @@
 module.exports = {
+  secrets: {
+    sessions: 'AAAAAAAAAA'
+  },
   sequelize: {
     user: 'SilentAuctions',
     password: 'AAAAAAAAAA',
@@ -8,5 +11,5 @@ module.exports = {
       logging: console.log,
       dialect: 'mysql'
     }
-  },
+  }
 }

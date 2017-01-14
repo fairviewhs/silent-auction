@@ -3,9 +3,14 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
+var redis = require("redis");
+var client  = redis.createClient();
 var expressLayouts = require('express-ejs-layouts');
 var multer  = require('multer');
 var upload = multer({ dest: 'uploads/' });
+var config = require('./config');
 
 var app = express();
 
@@ -20,14 +25,27 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressLayouts);
 
+app.use(session({
+  store: new RedisStore({
+    host: 'localhost',
+    port: 6379,
+    client: client,
+    db:2,
+    saveUninitialized: false,
+    resave: false,
+    logErrors: true
+  }),
+  secret: config.secrets.sessions
+}));
+
 app.use(function(req,res,next){
-  res.locals.session = {};//req.session;
+  res.locals.session = req.session;
   res.locals.layout = './layout';
   next();
 });
 
 app.use('/', require('./routes/index'));
-app.use('/users', require('./routes/users'));
+app.use('/', require('./routes/users'));
 app.use('/items', require('./routes/items'));
 app.use('/auctions', require('./routes/auctions'));
 app.use('/donations', require('./routes/donations'));
