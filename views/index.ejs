@@ -11,7 +11,7 @@
         <paper-button class='content' id='newauction'>New Auction</paper-button>
       </a>
     </div>
-    <% if(session.user.auctions.length == 0){ %>
+    <% if(!session.user.auctions || session.user.auctions.length == 0){ %>
       <paper-item>You are not running any active auctions.</paper-item>
     <% }else{ %>
       <% for(var i=0; i<session.user.auctions.length; i++){ %>

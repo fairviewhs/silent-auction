@@ -1,6 +1,7 @@
 module.exports = {
   secrets: {
-    sessions: 'AAAAAAAAAA'
+    sessions: 'AAAAAAAAAA',
+    saltRounds: 11
   },
   sequelize: {
     user: 'SilentAuctions',

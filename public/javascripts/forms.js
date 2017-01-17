@@ -2,7 +2,11 @@
 
 $(document).ready(function() {
   $("form").each(function() {
-    $(this).attr("onsubmit", "return submitForm(this)");
+    let form = $(this);
+    form.attr("onsubmit", "return submitForm(this)");
+    form.find("#submit").click(function(){
+      form.submit();
+    });
   });
 });
 
@@ -16,6 +20,7 @@ function submitForm(e){
   formDataArray.forEach(function(e){
     formData[e.name] = e.value;
   });
+
   $.ajax({
     url: $(e).attr("action"),
     data: formData,
