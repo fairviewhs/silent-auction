@@ -88,7 +88,6 @@ router.use('/:auctionId/items', require('./items'));
 
 router.use('/:auctionId/donations', require('./donations'));
 
-
 router.get('/:id', function(req, res, next) {
   Auctions.findOne({
     where: { id: req.params.id },
