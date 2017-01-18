@@ -20,7 +20,6 @@ function submitForm(e){
   formDataArray.forEach(function(e){
     formData[e.name] = e.value;
   });
-
   $.ajax({
     url: $(e).attr("action"),
     data: formData,

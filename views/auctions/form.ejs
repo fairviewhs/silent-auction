@@ -1,6 +1,6 @@
 <paper-material elevation="1" class="maincontent">
-  <form method="post" action="<%= action %>">
-    <h2>Start an Auction</h2>
+  <form method="post" action="<%= action.url %>">
+    <h2><%= action.name %> Auction</h2>
     <paper-input-container always-float-label>
       <label>Auction name</label>
       <input name='name' value='<%=auction.name || ""%>' required></input>

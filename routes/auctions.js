@@ -6,7 +6,7 @@ var perms = require('../helpers/permissions');
 var form = require('../helpers/validator');
 
 router.get('/new', perms.isAdmin(), function(req, res, next) {
-  res.render('auctions/form', { action: { name: 'new', url: '/new' }, auction: { } });
+  res.render('auctions/form', { action: { name: 'New', url: 'new' }, auction: { } });
 });
 
 router.post('/new', form.exists(['name', 'host', 'description', 'start_time', 'end_time']),
@@ -23,8 +23,14 @@ router.post('/new', form.exists(['name', 'host', 'description', 'start_time', 'e
     }
   }).spread((auction, isNew) => {
     if(isNew){
-      Admins.findOne({ where: { id: req.session.user.id } }).then((user) => {
-        user.addAuction(auction);
+      Admins.findOne({ where: { id: req.session.user.id } }).then((admin) => {
+        admin.addAuction(auction).then(()=>{
+          res.send({
+            success: true,
+            redir: '/',
+            message: 'Auction created!'
+          });
+        });
       });
     }else{
       res.send({
