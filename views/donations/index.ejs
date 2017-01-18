@@ -5,7 +5,7 @@
       <div id='pledge-x-upper'></div>
       <div id='pledge-x-lower'></div>
     </div>
-    <div id='pledge-button'><%= link_to('Make a pledge', '/donations/new') %></div>
+    <div id='pledge-button'><%- link_to('Make a pledge', '/donations/new') %></div>
     <% if(donations.length > 0){ %>
       <p>Donors who have made a pledge:</p>
       <% donations.forEach(function(donation){ %>
@@ -15,7 +15,7 @@
               <div><%= donation.name %></div>
               <div secondary>
                 <%= donation.email %> | <%= donation.phone %> | <%= donation.amount %> |
-                <%= link_to('Destroy', donation.destroy_path()) %>
+                <%- link_to('Destroy', donation.destroy_path()) %>
               </div>
             </paper-item-body>
           <% }else{ %>

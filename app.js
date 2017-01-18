@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 var redis = require("redis");
+var helpers = require('express-helpers');
 var client  = redis.createClient();
 var expressLayouts = require('express-ejs-layouts');
 var multer  = require('multer');
@@ -17,6 +18,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+helpers(app);
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -41,6 +43,7 @@ app.use(session({
 app.use(function(req,res,next){
   res.locals.session = req.session;
   res.locals.layout = './layout';
+  console.log(req.session);
   next();
 });
 

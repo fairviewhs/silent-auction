@@ -14,6 +14,7 @@
     "ejs": "~2.5.2",
     "express": "~4.14.0",
     "express-ejs-layouts": "^2.2.0",
+    "express-helpers": "^1.3.2",
     "express-session": "^1.14.2",
     "morgan": "~1.7.0",
     "multer": "^1.2.1",

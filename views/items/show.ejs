@@ -1,14 +1,14 @@
 <paper-material elevation="1" class="maincontent">
-  <%= link_to("<paper-button class='content'>Go Back to Auction</paper-button>", auction.get_path()) %>
+  <%- link_to("<paper-button class='content'>Go Back to Auction</paper-button>", auction.get_path()) %>
 </paper-material>
 
 <paper-material elevation="1" class="maincontent">
   <div class="titleSection">
     <div class="title"><%= item.name %> ($<%= item.bids.length>0 ? item.bids[0] : item.price %>)</div>
     <% if(session.user && session.user.isAdmin(auction)){ %>
-      <%= link_to("<paper-button class='content'>Delete</paper-button>", item.get_delete_path()) %>
-      <%= link_to("<paper-button class='content'>Edit</paper-button>", item.get_edit_path()) %>
-      <%= link_to("<paper-button class='content'>Bidders</paper-button>", item.get_bidders_path()) %>
+      <%- link_to("<paper-button class='content'>Delete</paper-button>", item.get_delete_path()) %>
+      <%- link_to("<paper-button class='content'>Edit</paper-button>", item.get_edit_path()) %>
+      <%- link_to("<paper-button class='content'>Bidders</paper-button>", item.get_bidders_path()) %>
     <% } %>
   </div>
   <div class="pictureGroup">
@@ -66,5 +66,5 @@
 <% } %>
 
 <paper-material elevation="1" class="maincontent">
-  <%= link_to("<paper-button class='content'>Go Back to Auction</paper-button>", auction.get_path()) %>
+  <%- link_to("<paper-button class='content'>Go Back to Auction</paper-button>", auction.get_path()) %>
 </paper-material>

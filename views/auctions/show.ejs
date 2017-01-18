@@ -1,10 +1,10 @@
 <paper-material elevation="1" class="maincontent">
   <div class="titleSection">
     <div class="title"><%= auction.name %></div>
-    <% if(session.user && session.user.isAdmin(auction)){ %>
-      <%= link_to("<paper-button class='content'>Delete</paper-button>", auction.delete_path()) %>
-      <%= link_to("<paper-button class='content'>Edit</paper-button>", auction.edit_path()) %>
-      <%= link_to("<paper-button class='content'>Bidders</paper-button>", auction.bidders_path()) %>
+    <% if(session.user && auction.isAdmin(session.user)){ %>
+      <%- link_to("<paper-button class='content'>Delete</paper-button>", auction.delete_path()) %>
+      <%- link_to("<paper-button class='content'>Edit</paper-button>", auction.edit_path()) %>
+      <%- link_to("<paper-button class='content'>Bidders</paper-button>", auction.bidders_path()) %>
     <% } %>
   </div>
   <p class="itemDescription"><b>Description: </b><%= auction.description %></p>
@@ -14,20 +14,20 @@
 </paper-material>
 
 <paper-material elevation="1" class="maincontent">
-  <% if(session.user && session.user.isAdmin(auction)){ %>
-    <%= link_to("<paper-button class='content'>New Item</paper-button>", auction.new_item_path()) %>
-    <% if(auction.items.length == 0){%>
+  <% if(session.user && auction.isAdmin(session.user)){ %>
+    <%- link_to("<paper-button class='content'>New Item</paper-button>", auction.new_item_path()) %>
+    <% if(auction.Items.length == 0){%>
       <p>There are currently no items in the auction</p>
     <% }else{ %>
       <div id="cardGrid">
-        <% auction.items.forEach(function(item){ %>
+        <% auction.Items.forEach(function(item){ %>
           <a href="<%= item.get_path() %>" class="body">
             <div class="card">
-              <div class="picture"><%= image_tag item.picture.url(:medium) %></div>
+              <div class="picture"><%# image_tag item.picture.url(:medium) %></div>
               <div class="cardTitle"><%= item.name %></div>
             </div>
           </a>
-        <% }) %>
+        <% }); %>
       </div>
     <% } %>
   <% } %>

@@ -18,9 +18,9 @@
         <td><%= item.name %></td>
         <td><%= item.price %></td>
         <td><%= item.description %></td>
-        <td><%= link_to('Show', item.show_path()) %></td>
-        <td><%= link_to('Edit', item.edit_path()) %></td>
-        <td><%= link_to('Destroy', item.delete_path()) %></td>
+        <td><%- link_to('Show', item.show_path()) %></td>
+        <td><%- link_to('Edit', item.edit_path()) %></td>
+        <td><%- link_to('Destroy', item.delete_path()) %></td>
       </tr>
     <% } %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to('New Item', new_item_path()) %>
+<%- link_to('New Item', new_item_path()) %>

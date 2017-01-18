@@ -19,6 +19,9 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         Admin.belongsToMany(models.Auction, { through: 'AuctionOwner' });
       }
+    },
+    instanceMethods: {
+      
     }
   });
 

@@ -20,7 +20,7 @@ router.post('/login', form.exists(['email', 'password']), function(req, res, nex
     where: {
       email: req.body.email
     },
-    attributes: ['id', 'password', 'email']
+    attributes: ['id', 'password', 'email', 'name']
   }).then((user) => {
     if(!user){
       res.send({
@@ -35,8 +35,9 @@ router.post('/login', form.exists(['email', 'password']), function(req, res, nex
       if(goodPass){
         req.session.user = {
           name: user.name,
-          id: user.id,
+          id: user.id
         }
+        console.log(user);
         res.send({
           success: true,
           message: 'User logged in',
@@ -80,7 +81,7 @@ router.post('/register', form.exists(['name', 'email', 'password', 'repassword']
       defaults: {
         name: req.body.name,
         email: req.body.email,
-        password: passHash,
+        password: passHash
       }
     }).spread((usr, isNew) => {
       if(isNew){

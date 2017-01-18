@@ -14,7 +14,7 @@
           <td><%= bid.phone %></td>
           <td><%= bid.email %></td>
           <td><%= bid.address %></td>
-          <td><%= link_to("<paper-button class='content'>Delete</paper-button>", bid.delete_path()) %></td>
+          <td><%- link_to("<paper-button class='content'>Delete</paper-button>", bid.delete_path()) %></td>
         </tr>
     <% } %>
   </table>
@@ -40,5 +40,5 @@
 </paper-material>
 
 <paper-material elevation="1" class="maincontent">
-  <%= link_to("<paper-button class='content'>Go Back to " + back.name + "</paper-button>", back.path %>
+  <%- link_to("<paper-button class='content'>Go Back to " + back.name + "</paper-button>", back.path %>
 </paper-material>

@@ -11,28 +11,28 @@
         <paper-button class='content' id='newauction'>New Auction</paper-button>
       </a>
     </div>
-    <% if(!session.user.auctions || session.user.auctions.length == 0){ %>
+    <% if(!session.user || user.auctions.length == 0){ %>
       <paper-item>You are not running any active auctions.</paper-item>
     <% }else{ %>
-      <% for(var i=0; i<session.user.auctions.length; i++){ %>
-        <a href="/auction/<%= session.user.auctions[i].id %>" class="body">
+      <% user.auctions.forEach(function(auction){ %>
+        <a href="/auction/<%= auction.id %>" class="body">
           <paper-item class="auctions">
             <paper-item-body two-line>
               <div class='auctionTitle'>
-                <div class='auctionName'><%= session.user.auctions[i] %></div>
-                <% if(session.user.auctions[i].start_time > Date.today){ %>
-                  <div class='time'><%= 'Starts in ' + session.user.auctions[i].start_time %></div>
-                <% }else if(auction.end_time > Date.today){ %>
-                  <div class='time'><%= 'ends in ' + session.user.auctions[i].end_time %></div>
+                <div class='auctionName'><%= auction.name %></div>
+                <% if(auction.start_time > new Date()){ %>
+                  <div class='time'><%= 'Starts in ' + auction.start_time %></div>
+                <% }else if(auction.end_time > new Date()){ %>
+                  <div class='time'><%= 'ends in ' + auction.end_time %></div>
                 <% }else{ %>
                   <div class='time'>Expired</div>
                 <% } %>
               </div>
-              <div secondary><%= session.user.auctions[i].host %></div>
+              <div secondary><%= auction.host %></div>
             </paper-item-body>
           </paper-item>
         </a>
-      <% } %>
+      <% }); %>
     <% } %>
 <% } %>
 
@@ -41,24 +41,24 @@
     <div class="titlebar">
       <div class="title">Open Auctions</div>
     </div>
-    <% for(var i=0; i<auctions.length; i++){ %>
-      <a href="/auction/<%= session.user.auctions[i].id %>" class="body">
+    <% auctions.forEach(function(auction){ %>
+      <a href="/auction/<%= auction.id %>" class="body">
         <paper-item class="auctions">
           <paper-item-body two-line>
             <div class='auctionTitle'>
-              <div class='auctionName'><%= session.user.auctions[i] %></div>
-              <% if(session.user.auctions[i].start_time > Date.today){ %>
-                <div class='time'><%= 'Starts in ' + session.user.auctions[i].start_time %></div>
+              <div class='auctionName'><%= auction.name %></div>
+              <% if(auction.start_time > Date.today){ %>
+                <div class='time'><%= 'Starts in ' + auction.start_time %></div>
               <% }else if(auction.end_time > Date.today){ %>
-                <div class='time'><%= 'ends in ' + session.user.auctions[i].end_time %></div>
+                <div class='time'><%= 'ends in ' + auction.end_time %></div>
               <% }else{ %>
                 <div class='time'>Expired</div>
               <% } %>
             </div>
-            <div secondary><%= session.user.auctions[i].host %></div>
+            <div secondary><%= auction.host %></div>
           </paper-item-body>
         </paper-item>
       </a>
-    <% } %>
+    <% }); %>
   </paper-material>
 <% } %>

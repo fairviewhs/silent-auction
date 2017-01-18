@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Auctions  = require('../models').Auction;
 var Admins  = require('../models').Admin;
+var Items  = require('../models').Item;
 var perms = require('../helpers/permissions');
 var form = require('../helpers/validator');
 
@@ -17,6 +18,7 @@ router.post('/new', form.exists(['name', 'host', 'description', 'start_time', 'e
     },
     defaults: {
       name: req.body.name,
+      host: req.body.host,
       description: req.body.name,
       start_time: req.body.start_time,
       end_time: req.body.end_time
@@ -58,13 +60,12 @@ router.post('/:id/edit', function(req, res, next) {
 router.use('/:auctionId/bids', require('./bids'));
 
 router.get('/:id', function(req, res, next) {
-  Auctions.fineOne({
+  Auctions.findOne({
     where: { id: req.params.id },
-    include: [{
-      model: models.Item
-    }]
+    include: [Items]
   }).then((auction)=>{
-    res.render('index', { auction: auction });
+    console.log(auction);
+    res.render('auctions/show', { auction: auction });
   });
 });
 

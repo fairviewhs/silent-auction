@@ -15,22 +15,25 @@ module.exports = function(sequelize, DataTypes) {
     },
     instanceMethods: {
       delete_path: function() {
-        return "";
+        return this.id + "/delete";
       },
       edit_path: function() {
-        return "";
+        return this.id + "/edit";
       },
       bidders_path: function() {
-        return "";
+        return "bid_lnk";
       },
       new_item_path: function() {
-        return "";
+        return "new_item_lnk";
       },
       human_start_time: function() {
-        return "";
+        return "stime_lnk";
       },
       human_end_time: function() {
-        return "";
+        return "etime_lnk";
+      },
+      isAdmin: function(user) {
+        return true;
       }
     }
   });
