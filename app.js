@@ -12,6 +12,7 @@ var expressLayouts = require('express-ejs-layouts');
 var multer  = require('multer');
 var upload = multer({ dest: 'uploads/' });
 var config = require('./config');
+var dateHelper = require('./helpers/dates');
 
 var app = express();
 
@@ -43,16 +44,13 @@ app.use(session({
 app.use(function(req,res,next){
   res.locals.session = req.session;
   res.locals.layout = './layout';
-  console.log(req.session);
+  res.locals.dates = dateHelper;
   next();
 });
 
 app.use('/', require('./routes/index'));
 app.use('/', require('./routes/users'));
-app.use('/item', require('./routes/items'));
-app.use('/auction', require('./routes/auctions'));
-app.use('/donation', require('./routes/donations'));
-app.use('/bid', require('./routes/bids'));
+app.use('/auctions', require('./routes/auctions'));
 
 // devise_for :admins, :controllers => { registrations: 'registrations' }
 // get 'items/:id/bidders' => 'items#bidders', as: :item_bidders

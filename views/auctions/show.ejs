@@ -9,8 +9,8 @@
   </div>
   <p class="itemDescription"><b>Description: </b><%= auction.description %></p>
   <p><b>Host: </b><%= auction.host %></p>
-  <p><b>Start Time: </b><%= auction.human_start_time() %></p>
-  <p><b>End Time: </b><%= auction.human_end_time() %></p>
+  <p><b>Start Time: </b><%= dates.human_readable(auction.start_time) %></p>
+  <p><b>End Time: </b><%= dates.human_readable(auction.end_time) %></p>
 </paper-material>
 
 <paper-material elevation="1" class="maincontent">

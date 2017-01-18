@@ -7,7 +7,7 @@ var perms = require('../helpers/permissions');
 var form = require('../helpers/validator');
 
 router.get('/new', perms.isAdmin(), function(req, res, next) {
-  res.render('auctions/form', { action: { name: 'New', url: 'new' }, auction: { } });
+  res.render('auctions/form', { action: { name: 'New', url: 'new', submit: 'Create' }, auction: { } });
 });
 
 router.post('/new', form.exists(['name', 'host', 'description', 'start_time', 'end_time']),
@@ -19,7 +19,7 @@ router.post('/new', form.exists(['name', 'host', 'description', 'start_time', 'e
     defaults: {
       name: req.body.name,
       host: req.body.host,
-      description: req.body.name,
+      description: req.body.description,
       start_time: req.body.start_time,
       end_time: req.body.end_time
     }
@@ -45,19 +45,49 @@ router.post('/new', form.exists(['name', 'host', 'description', 'start_time', 'e
   });
 });
 
-router.get('/:id/edit', function(req, res, next) {
+router.get('/:id/edit', perms.isAdmin(), function(req, res, next) {
   Auctions.findOne({
     where: { id: req.params.id }
   }).then((auction)=>{
-    res.render('auctions/form', { action: { name: 'edit', url: '/' + req.params.id + '/edit' }, auction: auction });
+    res.render('auctions/form', { action: { name: 'Edit', url: 'edit', submit: 'Update' }, auction: auction });
   });
 });
 
-router.post('/:id/edit', function(req, res, next) {
+router.post('/:id/edit', perms.isAdmin(), function(req, res, next) {
+  Auctions.update({
+    name: req.body.name,
+    host: req.body.host,
+    description: req.body.description,
+    start_time: req.body.start_time,
+    end_time: req.body.end_time
+  },
+  {
+    where: { id: req.params.id }
+  }).then((n)=>{
+    res.send({
+      success: true,
+      message: 'updated!',
+      redir: '/auctions/' + req.params.id
+    });
+  });
+});
 
+router.get('/:id/delete', perms.isAdmin(), function(req, res, next) {
+  Auctions.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then((auct)=>{
+    res.redirect('/');
+  })
 });
 
 router.use('/:auctionId/bids', require('./bids'));
+
+router.use('/:auctionId/items', require('./items'));
+
+router.use('/:auctionId/donations', require('./donations'));
+
 
 router.get('/:id', function(req, res, next) {
   Auctions.findOne({

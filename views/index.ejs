@@ -7,7 +7,7 @@
   <paper-material elevation="1" class="maincontent">
     <div class="titlebar">
       <div class="title">Your auctions</div>
-      <a href="/auction/new">
+      <a href="/auctions/new">
         <paper-button class='content' id='newauction'>New Auction</paper-button>
       </a>
     </div>
@@ -15,7 +15,7 @@
       <paper-item>You are not running any active auctions.</paper-item>
     <% }else{ %>
       <% user.auctions.forEach(function(auction){ %>
-        <a href="/auction/<%= auction.id %>" class="body">
+        <a href="/auctions/<%= auction.id %>" class="body">
           <paper-item class="auctions">
             <paper-item-body two-line>
               <div class='auctionTitle'>
@@ -42,7 +42,7 @@
       <div class="title">Open Auctions</div>
     </div>
     <% auctions.forEach(function(auction){ %>
-      <a href="/auction/<%= auction.id %>" class="body">
+      <a href="/auctions/<%= auction.id %>" class="body">
         <paper-item class="auctions">
           <paper-item-body two-line>
             <div class='auctionTitle'>
