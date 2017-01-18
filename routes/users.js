@@ -3,7 +3,7 @@ var router = express.Router();
 var bcrypt = require('bcryptjs');
 var config = require('../config');
 var Admins  = require('../models').Admin;
-var formValid = require('../helpers/validator');
+var form = require('../helpers/validator');
 
 router.get('/users', function(req, res, next) {
   Admins.findAll().then((users) => {
@@ -15,7 +15,7 @@ router.get('/login', function(req, res, next) {
   res.render('user/login', { auctions: [] });
 });
 
-router.post('/login', function(req, res, next) {
+router.post('/login', form.exists(['email', 'password']), function(req, res, next) {
   Admins.findOne({
     where: {
       email: req.body.email
@@ -58,7 +58,7 @@ router.get('/register', function(req, res, next) {
   res.render('user/new');
 });
 
-router.post('/register', formValid.exists(['name', 'email', 'password', 'repassword']), function(req, res, next) {
+router.post('/register', form.exists(['name', 'email', 'password', 'repassword']), function(req, res, next) {
   if(req.body.password !== req.body.repassword){
     res.send({
       success: false,

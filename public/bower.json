@@ -1,7 +1,7 @@
 {
   "name": "icon-toggle",
   "version": "0.0.0",
-  "homepage": "https://github.com/Polymer/element-tutorial",
+  "homepage": "https://github.com/Polymer/GFY",
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -21,6 +21,7 @@
     "paper-toast": "PolymerElements/paper-toast#^1.0.0",
     "paper-item": "PolymerElements/paper-item#^1.0.0",
     "iron-autogrow-textarea": "PolymerElements/iron-autogrow-textarea#^1.0.0",
+    "iron-icons": "PolymerElements/iron-icons#^1.0.0",
     "vaadin-upload": "^1.1.0"
   }
 }

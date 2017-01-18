@@ -46,10 +46,10 @@ app.use(function(req,res,next){
 
 app.use('/', require('./routes/index'));
 app.use('/', require('./routes/users'));
-app.use('/items', require('./routes/items'));
-app.use('/auctions', require('./routes/auctions'));
-app.use('/donations', require('./routes/donations'));
-app.use('/bids', require('./routes/bids'));
+app.use('/item', require('./routes/items'));
+app.use('/auction', require('./routes/auctions'));
+app.use('/donation', require('./routes/donations'));
+app.use('/bid', require('./routes/bids'));
 
 // devise_for :admins, :controllers => { registrations: 'registrations' }
 // get 'items/:id/bidders' => 'items#bidders', as: :item_bidders

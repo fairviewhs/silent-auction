@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        Auction.hasMany(models.AuctionOwner);
+        Auction.belongsToMany(models.Admin, { through: 'AuctionOwner' });
         Auction.hasMany(models.Item);
         Auction.hasMany(models.Donation);
       }
