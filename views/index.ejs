@@ -14,7 +14,7 @@
     <% if(!session.user || user.auctions.length == 0){ %>
       <paper-item>You are not running any active auctions.</paper-item>
     <% }else{ %>
-      <% user.auctions.forEach(function(auction){ %>
+      <% user.auctions.forEach((auction)=>{ %>
         <a href="/auctions/<%= auction.id %>" class="body">
           <paper-item class="auctions">
             <paper-item-body two-line>
@@ -41,7 +41,7 @@
     <div class="titlebar">
       <div class="title">Open Auctions</div>
     </div>
-    <% auctions.forEach(function(auction){ %>
+    <% auctions.forEach((auction)=>{ %>
       <a href="/auctions/<%= auction.id %>" class="body">
         <paper-item class="auctions">
           <paper-item-body two-line>

@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<p id="notice"><%= locals.notice || "" %></p>
 
 <h1>Listing Items</h1>
 
@@ -13,7 +13,7 @@
   </thead>
 
   <tbody>
-    <% items.forEach(item){ %>
+    <% auction.Items.forEach((item)=>{ %>
       <tr>
         <td><%= item.name %></td>
         <td><%= item.price %></td>
@@ -22,10 +22,10 @@
         <td><%- link_to('Edit', item.edit_path()) %></td>
         <td><%- link_to('Destroy', item.delete_path()) %></td>
       </tr>
-    <% } %>
+    <% }); %>
   </tbody>
 </table>
 
 <br>
 
-<%- link_to('New Item', new_item_path()) %>
+<%- link_to('New Item', auction.new_item_path()) %>

@@ -13,7 +13,7 @@
 
     <paper-input-container always-float-label textarea>
       <label>Description</label>
-      <textarea name='price'>
+      <textarea name='desc'>
         <%= item.description || ""%>
       </textarea>
     </paper-input-container>
@@ -21,9 +21,9 @@
     <paper-input-container always-float-label textarea>
       <label>The first picture will be the thumbnail icon. You can upload up to 3 pictures.</label>
     </paper-input-container>
-    <vaadin-upload form-data-name="image1"></vaadin-upload>
-    <vaadin-upload form-data-name="image2"></vaadin-upload>
-    <vaadin-upload form-data-name="image3"></vaadin-upload>
+    <vaadin-upload headers='{"Image": "1"}'></vaadin-upload>
+    <vaadin-upload headers='{"Image": "2"}'></vaadin-upload>
+    <vaadin-upload headers='{"Image": "3"}'></vaadin-upload>
     <br><br>
     <paper-button id="submit"><%= action.name %> Item</paper-button>
   </form>
