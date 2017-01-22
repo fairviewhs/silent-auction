@@ -2,17 +2,17 @@
   <form method="post" action="<%= action %>">
     <paper-input-container always-float-label class="field">
       <label>Your Name</label>
-      <input name='name' value='<%= donator.name || ""%>' required></input>
+      <input name='name' value='<%= user.name || ""%>' required></input>
     </paper-input-container>
 
     <paper-input-container always-float-label class="field">
       <label>Your Email</label>
-      <input name='email' value='<%= donator.email || ""%>' required></input>
+      <input name='email' value='<%= user.email || ""%>' required></input>
     </paper-input-container>
 
     <paper-input-container always-float-label class="field">
       <label>Your Phone Number: (123)-456-7890</label>
-      <input name='phone' value='<%= donator.phone || ""%>' required></input>
+      <input name='phone' value='<%= user.phone || ""%>' required></input>
     </paper-input-container>
 
     <paper-input-container always-float-label class="field number-field">

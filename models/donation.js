@@ -7,6 +7,11 @@ module.exports = function(sequelize, DataTypes) {
         Donation.belongsTo(models.Auction);
         Donation.belongsTo(models.User);
       }
+    },
+    instanceMethods: {
+      delete_path: function(auction) {
+        return "/auctions/" + auction.id + "/donations/" + this.id + "/delete";
+      }
     }
   });
 

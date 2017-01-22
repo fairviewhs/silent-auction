@@ -32,3 +32,12 @@
     <% } %>
   <% } %>
 </paper-material>
+
+<% if(auction.start_time < new Date() && auction.end_time > new Date()){ %>
+  <%- include('../donations/index', {
+    user: (session.bidder || {}),
+    action: auction.get_path() + '/donations/create',
+    donations: auction.Donations,
+    auction: auction
+  }); %>
+<% } %>

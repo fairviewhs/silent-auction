@@ -3,6 +3,8 @@ var router = express.Router();
 var Auctions  = require('../models').Auction;
 var Admins  = require('../models').Admin;
 var Items  = require('../models').Item;
+var Donations  = require('../models').Donation;
+var Users  = require('../models').User;
 var perms = require('../helpers/permissions');
 var form = require('../helpers/validator');
 
@@ -91,9 +93,8 @@ router.use('/:auctionId/donations', require('./donations'));
 router.get('/:id', function(req, res, next) {
   Auctions.findOne({
     where: { id: req.params.id },
-    include: [Items]
+    include: [Items, { model: Donations, include: [Users] }]
   }).then((auction)=>{
-    console.log(auction);
     res.render('auctions/show', { auction: auction });
   });
 });

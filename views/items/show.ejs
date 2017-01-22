@@ -55,7 +55,7 @@
   <paper-material elevation="1" class="maincontent">
     <h2>Submit a Bid for this item</h2>
     <%- include('../bidders/form', {
-      user: (session.bidder ? session.bidder : {}),
+      user: (session.bidder || {}),
       min_bid: (item.Bids.length > 0 ? item.Bids[item.Bids.length-1].amount + 10 : item.price),
       action: item.get_path() + '/bids/create'
     }); %>

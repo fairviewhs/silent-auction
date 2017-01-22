@@ -1,12 +1,13 @@
 var express = require('express');
 var itemBidRoutes = express.Router({ mergeParams: true });
 var auctionBidRoutes = express.Router({ mergeParams: true });
+var form = require('../helpers/validator');
 var Items  = require('../models').Item;
 var Auctions  = require('../models').Auction;
 var Users  = require('../models').User;
 var Bids  = require('../models').Bid;
 
-itemBidRoutes.post('/create', function(req, res, next) {
+itemBidRoutes.post('/create', form.exists(['email', 'bid_price', 'name', 'phone']), function(req, res, next) {
   Items.findOne({
     where: { id: req.params.itemId},
     include: [Bids, Auctions]

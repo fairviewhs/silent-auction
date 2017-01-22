@@ -1,30 +1,27 @@
 <paper-material elevation="1" class="maincontent">
-  <div class='container'>
-    <h3>This is the index page for donations.</h3>
-    <div id='pledge-cancel-button'>
-      <div id='pledge-x-upper'></div>
-      <div id='pledge-x-lower'></div>
-    </div>
-    <div id='pledge-button'><%- link_to('Make a pledge', '/donations/new') %></div>
-    <% if(donations.length > 0){ %>
-      <p>Donors who have made a pledge:</p>
-      <% donations.forEach((donation)=>{ %>
-        <paper-item>
-          <% if(session.user){ %>
-            <paper-item-body two-line>
-              <div><%= donation.name %></div>
-              <div secondary>
-                <%= donation.email %> | <%= donation.phone %> | <%= donation.amount %> |
-                <%- link_to('Destroy', donation.destroy_path()) %>
-              </div>
-            </paper-item-body>
-          <% }else{ %>
-            <div><%= donation.name %></div>
-          <% } %>
-        </paper-item>
-      <% }) %>
-    <% }else{ %>
-      <p>There have been no donations made at this point. Be the first to make the pledge!</p>
-    <% } %>
-  </div>
+  <h2>Donations</h2>
+  <%- include('../donations/form', {
+    user: user,
+    action: action
+  }); %>
+  <% if(donations.length > 0){ %>
+    <p>Donors who have made a pledge:</p>
+    <% donations.forEach((donation)=>{ %>
+      <paper-item>
+        <% if(session.user){ %>
+          <paper-item-body two-line>
+            <div><%= donation.User.name %></div>
+            <div secondary>
+              <%= donation.User.email %> | <%= donation.User.phone %> | $<%= donation.amount %>
+              <%- link_to("<paper-button class='content'>Delete Donation</paper-button>", donation.delete_path(auction)) %>
+            </div>
+          </paper-item-body>
+        <% }else{ %>
+          <div><%= donation.User.name %> | $<%= donation.amount %></div>
+        <% } %>
+      </paper-item>
+    <% }) %>
+  <% }else{ %>
+    <p>There have been no donations made at this point. Be the first to make the pledge!</p>
+  <% } %>
 </paper-material>
