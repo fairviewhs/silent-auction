@@ -36,7 +36,7 @@
     <% } %>
 <% } %>
 
-<% if(auctions.length == 0){ %>
+<% if(auctions.length != 0){ %>
   <paper-material elevation="1" class="maincontent">
     <div class="titlebar">
       <div class="title">Open Auctions</div>
@@ -47,10 +47,10 @@
           <paper-item-body two-line>
             <div class='auctionTitle'>
               <div class='auctionName'><%= auction.name %></div>
-              <% if(auction.start_time > Date.today){ %>
-                <div class='time'><%= 'Starts in ' + auction.start_time %></div>
-              <% }else if(auction.end_time > Date.today){ %>
-                <div class='time'><%= 'ends in ' + auction.end_time %></div>
+              <% if(auction.start_time > new Date()){ %>
+                <div class='time'><%= 'Starts on ' + auction.start_time %></div>
+              <% }else if(auction.end_time > new Date()){ %>
+                <div class='time'><%= 'ends on ' + auction.end_time %></div>
               <% }else{ %>
                 <div class='time'>Expired</div>
               <% } %>

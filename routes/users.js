@@ -3,6 +3,7 @@ var router = express.Router();
 var bcrypt = require('bcryptjs');
 var config = require('../config');
 var Admins  = require('../models').Admin;
+var Auctions  = require('../models').Auction;
 var form = require('../helpers/validator');
 
 router.get('/users', function(req, res, next) {
@@ -35,13 +36,25 @@ router.post('/login', form.exists(['email', 'password']), function(req, res, nex
       if(goodPass){
         req.session.user = {
           name: user.name,
-          id: user.id
+          id: user.id,
+          auctions: []
         }
-        console.log(user);
-        res.send({
-          success: true,
-          message: 'User logged in',
-          redir: '/'
+        user.getAuctions().then((auctions)=>{
+          let loopAuctions = function(id, callback){
+            if(auctions.length > id){
+              req.session.user.auctions.push(auctions[id].id);
+              loopAuctions(id+1, callback);
+            }else{
+              callback();
+            }
+          };
+          loopAuctions(0, ()=>{
+            res.send({
+              success: true,
+              message: 'User logged in',
+              redir: '/'
+            });
+          });
         });
       }else{
         res.send({
@@ -87,12 +100,27 @@ router.post('/register', form.exists(['name', 'email', 'password', 'repassword']
       if(isNew){
         req.session.user = {
           name: usr.name,
-          id: usr.id
+          id: usr.id,
+          auctions: []
         };
-        res.send({
-          success: true,
-          message: 'User account created',
-          redir: '/'
+        usr.getAuctions().then((auctions)=>{
+
+          let loopAuctions = function(id, callback){
+            if(auctions.length < id){
+              req.session.user.auctions.push(auctions[id].id);
+              loopAuctions(id+1);
+            }else{
+              callback();
+            }
+          };
+          loopAuctions(0, ()=>{
+
+            res.send({
+              success: true,
+              message: 'User account created',
+              redir: '/'
+            });
+          });
         });
       }else{
         res.send({

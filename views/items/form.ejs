@@ -19,19 +19,19 @@
     <paper-input-container always-float-label textarea>
       <label>The first picture will be the thumbnail icon. You can upload up to 3 pictures.</label>
     </paper-input-container>
-    <vaadin-upload headers='{"Image": "1"}'>
+    <vaadin-upload headers='{"Image": "1"}' accept="image/*">
       <div class="drop-label">
         <iron-icon icon="file-upload"></iron-icon>
         <%= item.picture_file_name || "Drop file here..." %>
       </div>
     </vaadin-upload>
-    <vaadin-upload headers='{"Image": "2"}'>
+    <vaadin-upload headers='{"Image": "2"}' accept="image/*">
       <div class="drop-label">
         <iron-icon icon="file-upload"></iron-icon>
         <%= item.picture2_file_name || "Drop file here..." %>
       </div>
     </vaadin-upload>
-    <vaadin-upload headers='{"Image": "3"}'>
+    <vaadin-upload headers='{"Image": "3"}' accept="image/*">
       <div class="drop-label">
         <iron-icon icon="file-upload"></iron-icon>
         <%= item.picture3_file_name || "Drop file here..." %>

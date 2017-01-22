@@ -30,7 +30,7 @@ module.exports = function(sequelize, DataTypes) {
         return "/auctions/" + this.id + "/items/new";
       },
       isAdmin: function(user) {
-        return true;
+        return user.auctions.contains(this.id);
       }
     }
   });
