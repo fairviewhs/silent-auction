@@ -4,7 +4,7 @@
 
 <paper-material elevation="1" class="maincontent">
   <div class="titleSection">
-    <div class="title"><%= item.name %> ($<%= item.Bids.length>0 ? item.Bids[0] : item.price %>)</div>
+    <div class="title"><%= item.name %> ($<%= item.Bids.length>0 ? item.Bids[0].amount : item.price %>)</div>
     <% if(session.user && item.Auction.isAdmin(session.user)){ %>
       <%- link_to("<paper-button class='content'>Delete</paper-button>", item.delete_path()) %>
       <%- link_to("<paper-button class='content'>Edit</paper-button>", item.edit_path()) %>
@@ -37,7 +37,7 @@
     </p>
     <p id="itemBidder">
       <strong>Current Highest Bidder</strong>
-      <%= item.Bids[item.Bids.length-1].without_name() %>
+      <%= item.Bids[item.Bids.length-1].User.name %>
     </p>
   <% }else{ %>
     <p>
@@ -47,17 +47,18 @@
   <% } %>
 </paper-material>
 
-<% if(item.Auction.start_time > Date.today){ %>
+<% if(item.Auction.start_time > new Date()){ %>
   <paper-material elevation="1" class="maincontent">
     <h2>The auction has not started yet. Please check back later!</h2>
   </paper-material>
-<% }else if(item.Auction.end_time > Date.today){ %>
+<% }else if(item.Auction.end_time > new Date()){ %>
   <paper-material elevation="1" class="maincontent">
     <h2>Submit a Bid for this item</h2>
     <%- include('../bidders/form', {
-      user: (session.user && session.user.bidder ? session.user.bidder : {}),
-      min_bid: item.Bids[item.Bids.length-1].amount + 10
-    }) %>
+      user: (session.bidder ? session.bidder : {}),
+      min_bid: (item.Bids.length > 0 ? item.Bids[item.Bids.length-1].amount + 10 : item.price),
+      action: item.get_path() + '/bids/create'
+    }); %>
   </paper-material>
 <% }else{ %>
   <paper-material elevation="1" class="maincontent">

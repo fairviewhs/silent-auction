@@ -1,5 +1,5 @@
 <paper-material elevation="1" class="maincontent">
-  <h2>Bidders for the whole auction</h2>
+  <h2>Bidders for <%= back.name %> <%= (locals.auction || locals.item).name %></h2>
   <table>
     <tr id="auctionhead">
       <td>Name</td>
@@ -8,37 +8,51 @@
       <td>Address</td>
       <td></td>
     </tr>
-    <% bidders.forEach((bid)=>{ %>
+    <% if(locals.auction){ %>
+      <% auction.Items.forEach((item)=>{ %>
+        <% item.Bids.forEach((bid)=>{ %>
+          <tr>
+            <td><%= bid.User.name %></td>
+            <td><%= bid.User.phone %></td>
+            <td><%= bid.User.email %></td>
+            <td><%= bid.address %></td>
+            <td><%- link_to("<paper-button class='content'>Delete</paper-button>", bid.auction_delete_path(auction)) %></td>
+          </tr>
+        <% }); %>
+      <% }); %>
+    <% }else{ %>
+      <% item.Bids.forEach((bid)=>{ %>
         <tr>
-          <td><%= bid.name %></td>
-          <td><%= bid.phone %></td>
-          <td><%= bid.email %></td>
+          <td><%= bid.User.name %></td>
+          <td><%= bid.User.phone %></td>
+          <td><%= bid.User.email %></td>
           <td><%= bid.address %></td>
-          <td><%- link_to("<paper-button class='content'>Delete</paper-button>", bid.delete_path()) %></td>
+          <td><%- link_to("<paper-button class='content'>Delete</paper-button>", bid.item_delete_path(item)) %></td>
         </tr>
+      <% }); %>
     <% } %>
   </table>
 </paper-material>
 
 <paper-material elevation="1" class="maincontent">
   <h2>Lottery</h2>
-  <% if(luckyWinner){ %>
+  <% if(locals.luckyWinner){ %>
     <p>
-      <b>Name: </b><%= luckyWinner.name %>
+      <b>Name: </b><%= luckyWinner.User.name %>
     </p>
     <p>
-      <b>Phone: </b><%= luckyWinner.phone %>
+      <b>Phone: </b><%= luckyWinner.User.phone %>
     </p>
     <p>
-      <b>Email: </b><%= luckyWinner.email %>
+      <b>Email: </b><%= luckyWinner.User.email %>
     </p>
     <br>
     <p><i>Note: </i>A name is generated everytime this page is loaded.</p>
-  <% }else if(hasLuckyWinner){ %>
+  <% }else{ %>
     No one has bid yet!
   <% } %>
 </paper-material>
 
 <paper-material elevation="1" class="maincontent">
-  <%- link_to("<paper-button class='content'>Go Back to " + back.name + "</paper-button>", back.path %>
+  <%- link_to("<paper-button class='content'>Go Back to " + back.name + "</paper-button>", back.path) %>
 </paper-material>

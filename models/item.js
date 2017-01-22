@@ -28,7 +28,7 @@ module.exports = function(sequelize, DataTypes) {
         return "/auctions/" + auction.id + "/items/" + this.id + "/edit";
       },
       bidders_path: function(auction = this.Auction) {
-        return "/auctions/" + this.id + "/bids";
+        return "/auctions/" + auction.id + "/items/" + this.id + "/bids";
       },
       picture_paths: function() {
         return [

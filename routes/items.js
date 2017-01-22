@@ -5,6 +5,7 @@ var form = require('../helpers/validator');
 var Items  = require('../models').Item;
 var Auctions  = require('../models').Auction;
 var Bids  = require('../models').Bid;
+var Users  = require('../models').User;
 var upload = multer({ dest: 'public/images/uploads' });
 var perms = require('../helpers/permissions');
 var form = require('../helpers/validator');
@@ -65,8 +66,19 @@ router.post('/new', perms.isAdmin(), upload.any(), function(req, res, next) {
   });
 });
 
+router.use('/:itemId/bids', require('./bids').items);
+
 router.get('/:id', function(req, res, next) {
-  Items.findOne({ where: { id: req.params.id }, include: [Auctions, Bids] }).then((item)=>{
+  Items.findOne({
+    where: { id: req.params.id },
+    include: [
+      Auctions,
+      {
+        model: Bids,
+        include: [Users]
+      }
+    ]
+  }).then((item)=>{
     res.render('items/show', { item: item });
   });
 });
@@ -122,5 +134,6 @@ router.post('/:id/edit', perms.isAdmin(), upload.any(), function(req, res, next)
     }
   });
 });
+
 
 module.exports = router;

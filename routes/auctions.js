@@ -82,7 +82,7 @@ router.get('/:id/delete', perms.isAdmin(), function(req, res, next) {
   });
 });
 
-router.use('/:auctionId/bids', require('./bids'));
+router.use('/:auctionId/bids', require('./bids').auctions);
 
 router.use('/:auctionId/items', require('./items'));
 
