@@ -21,7 +21,7 @@
     <% }else{ %>
       <div id="cardGrid">
         <% auction.Items.forEach((item)=>{ %>
-          <a href="<%= item.get_path() %>" class="body">
+          <a href="<%= item.get_path(auction) %>" class="body">
             <div class="card">
               <div class="picture"><%# image_tag item.picture.url(:medium) %></div>
               <div class="cardTitle"><%= item.name %></div>

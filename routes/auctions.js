@@ -79,7 +79,7 @@ router.get('/:id/delete', perms.isAdmin(), function(req, res, next) {
     }
   }).then((auct)=>{
     res.redirect('/');
-  })
+  });
 });
 
 router.use('/:auctionId/bids', require('./bids'));

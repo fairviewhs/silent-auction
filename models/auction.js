@@ -14,6 +14,9 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     instanceMethods: {
+      get_path: function() {
+        return "/auctions/" + this.id;
+      },
       delete_path: function() {
         return "/auctions/" + this.id + "/delete";
       },

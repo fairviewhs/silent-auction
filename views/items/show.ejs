@@ -1,22 +1,22 @@
 <paper-material elevation="1" class="maincontent">
-  <%- link_to("<paper-button class='content'>Go Back to Auction</paper-button>", auction.get_path()) %>
+  <%- link_to("<paper-button class='content'>Go Back to Auction</paper-button>", item.Auction.get_path()) %>
 </paper-material>
 
 <paper-material elevation="1" class="maincontent">
   <div class="titleSection">
-    <div class="title"><%= item.name %> ($<%= item.bids.length>0 ? item.bids[0] : item.price %>)</div>
-    <% if(session.user && session.user.isAdmin(auction)){ %>
-      <%- link_to("<paper-button class='content'>Delete</paper-button>", item.get_delete_path()) %>
-      <%- link_to("<paper-button class='content'>Edit</paper-button>", item.get_edit_path()) %>
-      <%- link_to("<paper-button class='content'>Bidders</paper-button>", item.get_bidders_path()) %>
+    <div class="title"><%= item.name %> ($<%= item.Bids.length>0 ? item.Bids[0] : item.price %>)</div>
+    <% if(session.user && item.Auction.isAdmin(session.user)){ %>
+      <%- link_to("<paper-button class='content'>Delete</paper-button>", item.delete_path()) %>
+      <%- link_to("<paper-button class='content'>Edit</paper-button>", item.edit_path()) %>
+      <%- link_to("<paper-button class='content'>Bidders</paper-button>", item.bidders_path()) %>
     <% } %>
   </div>
   <div class="pictureGroup">
-    <% item.pictures.forEach((pic)=>{ %>
+    <% item.picture_paths().forEach((pic)=>{ %>
       <div class="Itempicture">
-        <img src="<%= pic.url %>"></img>
+        <img src="<%= pic %>"></img>
       </div>
-    <% }) %>
+    <% }); %>
   </div>
 
   <p>
@@ -30,14 +30,14 @@
   </p>
 
   <% maxPrice = item.price %>
-  <% if(item.bids.length > 0){ %>
+  <% if(item.Bids.length > 0){ %>
     <p>
       <strong>Current Highest Bid</strong>
-      $<%= item.bids[item.bids.length-1].amount %>
+      $<%= item.Bids[item.Bids.length-1].amount %>
     </p>
     <p id="itemBidder">
       <strong>Current Highest Bidder</strong>
-      <%= item.bids[item.bids.length-1].without_name() %>
+      <%= item.Bids[item.Bids.length-1].without_name() %>
     </p>
   <% }else{ %>
     <p>
@@ -47,16 +47,16 @@
   <% } %>
 </paper-material>
 
-<% if(auction.start_time > Date.today){ %>
+<% if(item.Auction.start_time > Date.today){ %>
   <paper-material elevation="1" class="maincontent">
     <h2>The auction has not started yet. Please check back later!</h2>
   </paper-material>
-<% }else if(auction.end_time > Date.today){ %>
+<% }else if(item.Auction.end_time > Date.today){ %>
   <paper-material elevation="1" class="maincontent">
     <h2>Submit a Bid for this item</h2>
     <%- include('../bidders/form', {
       user: (session.user && session.user.bidder ? session.user.bidder : {}),
-      min_bid: item.bids[item.bids.length-1].amount + 10
+      min_bid: item.Bids[item.Bids.length-1].amount + 10
     }) %>
   </paper-material>
 <% }else{ %>
@@ -66,5 +66,5 @@
 <% } %>
 
 <paper-material elevation="1" class="maincontent">
-  <%- link_to("<paper-button class='content'>Go Back to Auction</paper-button>", auction.get_path()) %>
+  <%- link_to("<paper-button class='content'>Go Back to Auction</paper-button>", item.Auction.get_path()) %>
 </paper-material>
