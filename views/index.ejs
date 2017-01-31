@@ -1,4 +1,4 @@
-<% if(!session.user){ %>
+<% if(!session.user || !session.user.confirmed){ %>
   <paper-material elevation="1" class="maincontent">
     Welcome to Silent Auction, a project under National Honor Society. Here you can bid
     for items up for auction, or donate. Thank you for visiting!
@@ -7,9 +7,11 @@
   <paper-material elevation="1" class="maincontent">
     <div class="titlebar">
       <div class="title">Your auctions</div>
-      <a href="/auctions/new">
-        <paper-button class='content' id='newauction'>New Auction</paper-button>
-      </a>
+      <% if(session.user.super_admin){ %>
+        <a href="/auctions/new">
+          <paper-button class='content' id='newauction'>New Auction</paper-button>
+        </a>
+      <% } %>
     </div>
     <% if(!session.user || user.auctions.length == 0){ %>
       <paper-item>You are not running any active auctions.</paper-item>

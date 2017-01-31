@@ -5,11 +5,16 @@ var config = require('../config');
 var Admins  = require('../models').Admin;
 var Auctions  = require('../models').Auction;
 var form = require('../helpers/validator');
+var perms = require('../helpers/permissions');
 
-router.get('/users', function(req, res, next) {
+router.get('/users', perms.isSuperAdmin(), function(req, res, next) {
   Admins.findAll().then((users) => {
     res.render('user/index', { users: users });
   });
+});
+
+router.post('/user/update/:id', perms.isSuperAdmin(), function(req, res, next) {
+
 });
 
 router.get('/user/confirm/:token', function(req, res, next) {
@@ -21,8 +26,10 @@ router.get('/user/confirm/:token', function(req, res, next) {
   }).then((usr) => {
     if(req.session.user){
       req.session.user.confirmed = true;
+      res.redirect('/');
+    }else{
+      res.redirect('/login');
     }
-    res.redirect('/login');
   });
 });
 
@@ -35,7 +42,7 @@ router.post('/login', form.exists(['email', 'password']), function(req, res, nex
     where: {
       email: req.body.email
     },
-    attributes: ['id', 'password', 'email', 'name', 'confirmed_email']
+    attributes: ['id', 'password', 'email', 'name', 'confirmed_email', 'super_admin']
   }).then((user) => {
     if(!user){
       res.send({
@@ -51,6 +58,8 @@ router.post('/login', form.exists(['email', 'password']), function(req, res, nex
         req.session.user = {
           name: user.name,
           id: user.id,
+          confirmed: user.confirmed_email,
+          super_admin: user.super_admin,
           auctions: []
         }
         user.getAuctions().then((auctions)=>{
@@ -115,6 +124,8 @@ router.post('/register', form.exists(['name', 'email', 'password', 'repassword']
         req.session.user = {
           name: usr.name,
           id: usr.id,
+          confirmed: user.confirmed_email,
+          super_admin: user.super_admin,
           auctions: []
         };
         usr.getAuctions().then((auctions)=>{

@@ -20,12 +20,12 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/new', perms.isAdmin(), function(req, res, next) {
+router.get('/new', perms.isAdmin(req.params.auctionId), function(req, res, next) {
   res.render('items/form', { action: { name: 'New', url: 'new', submit: 'Create' }, item: { } });
 });
 
 //Recive images w/ multer
-router.post('/new', perms.isAdmin(), upload.any(), function(req, res, next) {
+router.post('/new', perms.isAdmin(req.params.auctionId), upload.any(), function(req, res, next) {
   Items.findOrCreate({
     where: { id: req.session.editing },
     defaults: { }
@@ -83,7 +83,7 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
-router.get('/:id/delete', perms.isAdmin(), function(req, res, next) {
+router.get('/:id/delete', perms.isAdmin(req.params.auctionId), function(req, res, next) {
   Items.destroy({
     where: {
       id: req.params.id
@@ -94,14 +94,14 @@ router.get('/:id/delete', perms.isAdmin(), function(req, res, next) {
   });
 });
 
-router.get('/:id/edit', perms.isAdmin(), function(req, res, next) {
+router.get('/:id/edit', perms.isAdmin(req.params.auctionId), function(req, res, next) {
   Items.findById(req.params.id).then((item)=>{
     res.render('items/form', { action: { name: 'Edit', url: 'edit', submit: 'Update' }, item: item });
   });
 });
 
 //Recive images w/ multer
-router.post('/:id/edit', perms.isAdmin(), upload.any(), function(req, res, next) {
+router.post('/:id/edit', perms.isAdmin(req.params.auctionId), upload.any(), function(req, res, next) {
   Items.findById(req.params.id).then((item)=>{
     if(req.get('Image')){
       item['picture'+(req.get('Image')==1?'':req.get('Image'))+'_file_path'] = req.files[0].filename;

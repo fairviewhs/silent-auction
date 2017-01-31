@@ -1,7 +1,7 @@
 <paper-material elevation="1" class="maincontent">
   <div class="titleSection">
     <div class="title"><%= auction.name %></div>
-    <% if(session.user && auction.isAdmin(session.user)){ %>
+    <% if(auction.isAdmin(session.user)){ %>
       <%- link_to("<paper-button class='content'>Delete</paper-button>", auction.delete_path()) %>
       <%- link_to("<paper-button class='content'>Edit</paper-button>", auction.edit_path()) %>
       <%- link_to("<paper-button class='content'>Bidders</paper-button>", auction.bidders_path()) %>
@@ -14,7 +14,7 @@
 </paper-material>
 
 <paper-material elevation="1" class="maincontent">
-  <% if(session.user && auction.isAdmin(session.user)){ %>
+  <% if(auction.isAdmin(session.user)){ %>
     <%- link_to("<paper-button class='content'>New Item</paper-button>", auction.new_item_path()) %>
   <% } %>
   <% if(auction.Items.length == 0){%>

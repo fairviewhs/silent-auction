@@ -8,12 +8,12 @@ var Users  = require('../models').User;
 var perms = require('../helpers/permissions');
 var form = require('../helpers/validator');
 
-router.get('/new', perms.isAdmin(), function(req, res, next) {
+router.get('/new', perms.isSuperAdmin(), function(req, res, next) {
   res.render('auctions/form', { action: { name: 'New', url: 'new', submit: 'Create' }, auction: { } });
 });
 
 router.post('/new', form.exists(['name', 'host', 'description', 'start_time', 'end_time']),
-  perms.isAdmin(), function(req, res, next) {
+  perms.isSuperAdmin(), function(req, res, next) {
   Auctions.findOrCreate({
     where: {
       name: req.body.name
@@ -47,7 +47,7 @@ router.post('/new', form.exists(['name', 'host', 'description', 'start_time', 'e
   });
 });
 
-router.get('/:id/edit', perms.isAdmin(), function(req, res, next) {
+router.get('/:id/edit', perms.isAdmin(req.params.id), function(req, res, next) {
   Auctions.findOne({
     where: { id: req.params.id }
   }).then((auction)=>{
@@ -55,7 +55,7 @@ router.get('/:id/edit', perms.isAdmin(), function(req, res, next) {
   });
 });
 
-router.post('/:id/edit', perms.isAdmin(), function(req, res, next) {
+router.post('/:id/edit', perms.isAdmin(req.params.id), function(req, res, next) {
   Auctions.update({
     name: req.body.name,
     host: req.body.host,
@@ -74,7 +74,7 @@ router.post('/:id/edit', perms.isAdmin(), function(req, res, next) {
   });
 });
 
-router.get('/:id/delete', perms.isAdmin(), function(req, res, next) {
+router.get('/:id/delete', perms.isAdmin(req.params.id), function(req, res, next) {
   Auctions.destroy({
     where: {
       id: req.params.id

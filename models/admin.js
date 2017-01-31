@@ -27,6 +27,10 @@ module.exports = function(sequelize, DataTypes) {
     confirmed_email: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
+    },
+    super_admin: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   }, {
     hooks: {

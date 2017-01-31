@@ -5,7 +5,7 @@
 <paper-material elevation="1" class="maincontent">
   <div class="titleSection">
     <div class="title"><%= item.name %> ($<%= item.Bids.length>0 ? item.Bids[0].amount : item.price %>)</div>
-    <% if(session.user && item.Auction.isAdmin(session.user)){ %>
+    <% if(item.Auction.isAdmin(session.user)){ %>
       <%- link_to("<paper-button class='content'>Delete</paper-button>", item.delete_path()) %>
       <%- link_to("<paper-button class='content'>Edit</paper-button>", item.edit_path()) %>
       <%- link_to("<paper-button class='content'>Bidders</paper-button>", item.bidders_path()) %>
