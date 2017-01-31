@@ -1,10 +1,10 @@
 module.exports = {
   secrets: {
-    sessions: '8Py9iODJ5wh702fU1E22O03n6V3Rn33s',
+    sessions: 'AAAAAAAAAA',
     saltRounds: 11,
     mail: {
-      user: 'silentauction@fairviewhs.org',
-      pass: 'b63G5h22%Umk'
+      user: 'silentauction',
+      pass: 'AAAAAAAAAA'
     }
   },
   sequelize: {

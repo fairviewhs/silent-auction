@@ -12,6 +12,20 @@ router.get('/users', function(req, res, next) {
   });
 });
 
+router.get('/user/confirm/:token', function(req, res, next) {
+  Admins.update({
+    confirmed_email: true
+  },
+  {
+    where: { confirm_token: req.params.token }
+  }).then((usr) => {
+    if(req.session.user){
+      req.session.user.confirmed = true;
+    }
+    res.redirect('/login');
+  });
+});
+
 router.get('/login', function(req, res, next) {
   res.render('user/login', { auctions: [] });
 });
@@ -21,7 +35,7 @@ router.post('/login', form.exists(['email', 'password']), function(req, res, nex
     where: {
       email: req.body.email
     },
-    attributes: ['id', 'password', 'email', 'name']
+    attributes: ['id', 'password', 'email', 'name', 'confirmed_email']
   }).then((user) => {
     if(!user){
       res.send({
