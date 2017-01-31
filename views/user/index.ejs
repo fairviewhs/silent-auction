@@ -1,3 +1,27 @@
-<% users.forEach((user)=>{ %>
-  <%= JSON.stringify(user); %>
-<% }); %>
+<paper-material elevation="1" class="maincontent">
+  <div class="titlebar">
+    <div class="title">Users</div>
+  </div>
+  <% users.forEach((user)=>{ %>
+    <paper-item class="auctions">
+      <paper-item-body two-line>
+        <div class='auctionTitle'>
+          <div class='auctionName'><%= user.name %></div>
+          <select id='<%= user.id %>' class='auctionSelector'>
+            <option class='default'>Select Auction</option>
+            <% auctions.forEach((auction)=>{ %>
+              <option isAdmin="<%= user.Auctions.indexOf(auction) != -1 %>" value="<%= auction.id %>"><%= auction.name %></option>
+            <% }); %>
+          </select>
+          <a id='<%= user.id %>' class='setAdmin' style='display: none; color: black; cursor: pointer;'>
+          </a>
+        </div>
+        <div secondary>
+          <%= user.email %>,
+          <%= (user.confirmed_email?"Email confirmed":"Email not confirmed") %>,
+          <%= (user.super_admin?"Super Admin":"") %>
+        </div>
+      </paper-item-body>
+    </paper-item>
+  <% }); %>
+</paper-material>

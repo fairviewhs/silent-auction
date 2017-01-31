@@ -8,6 +8,9 @@
     <div class="titlebar">
       <div class="title">Your auctions</div>
       <% if(session.user.super_admin){ %>
+        <a href="/users">
+          <paper-button class='content' id='newauction'>Users</paper-button>
+        </a>
         <a href="/auctions/new">
           <paper-button class='content' id='newauction'>New Auction</paper-button>
         </a>
@@ -36,6 +39,7 @@
         </a>
       <% }); %>
     <% } %>
+  </paper-material>
 <% } %>
 
 <% if(auctions.length != 0){ %>

@@ -8,12 +8,15 @@ var form = require('../helpers/validator');
 var perms = require('../helpers/permissions');
 
 router.get('/users', perms.isSuperAdmin(), function(req, res, next) {
-  Admins.findAll().then((users) => {
-    res.render('user/index', { users: users });
+  Admins.findAll({ include: [Auctions] }).then((users) => {
+    Auctions.findAll().then((auctions)=>{
+      console.log(users);
+      res.render('user/index', { users: users, auctions: auctions });
+    });
   });
 });
 
-router.post('/user/update/:id', perms.isSuperAdmin(), function(req, res, next) {
+router.post('/user', perms.isSuperAdmin(), function(req, res, next) {
 
 });
 
@@ -124,8 +127,8 @@ router.post('/register', form.exists(['name', 'email', 'password', 'repassword']
         req.session.user = {
           name: usr.name,
           id: usr.id,
-          confirmed: user.confirmed_email,
-          super_admin: user.super_admin,
+          confirmed: usr.confirmed_email,
+          super_admin: usr.super_admin,
           auctions: []
         };
         usr.getAuctions().then((auctions)=>{

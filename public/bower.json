@@ -22,6 +22,7 @@
     "paper-item": "PolymerElements/paper-item#^1.0.0",
     "iron-autogrow-textarea": "PolymerElements/iron-autogrow-textarea#^1.0.0",
     "iron-icons": "PolymerElements/iron-icons#^1.0.0",
-    "vaadin-upload": "^1.1.0"
+    "vaadin-upload": "^1.1.0",
+    "paper-dropdown-menu": "^1.5.0"
   }
 }

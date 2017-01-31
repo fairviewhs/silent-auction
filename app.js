@@ -13,6 +13,7 @@ var multer  = require('multer');
 var upload = multer({ dest: 'uploads/' });
 var config = require('./config');
 var dateHelper = require('./helpers/dates');
+var Admins = require('./models').Admin;
 
 var app = express();
 
@@ -45,7 +46,15 @@ app.use(function(req,res,next){
   res.locals.session = req.session;
   res.locals.layout = './layout';
   res.locals.dates = dateHelper;
-  next();
+  if(req.session.user){
+    Admins.findById(req.session.user.id).then((user)=>{
+      req.session.user.super_admin = user.super_admin;
+      req.session.user.confirmed = user.confirmed_email;
+      next();
+    });
+  }else{
+    next();
+  }
 });
 
 app.use('/', require('./routes/index'));

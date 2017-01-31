@@ -6,7 +6,7 @@ module.exports = {
       if(req.session.user && req.session.user.super_admin){
         next();
       }else{
-        Auctions.findById(id).then((auction)=>{
+        Auctions.findById(req.params[id]).then((auction)=>{
           if(auction.isAdmin(req.session.user)){
             next();
           }else{
@@ -20,6 +20,8 @@ module.exports = {
     return function(req, res, next){
       if(req.session.user && req.session.user.super_admin){
         next();
+      }else if(req.session.user){
+
       }else{
         res.redirect('/no-perm');
       }
