@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/no-perm', function(req, res, next) {
-  res.render('error', { message: "You can't go there!", status: "403 forbidden" });
+  res.render('error', { message: "You can't go there!", error: { status: "403 forbidden" } });
 });
 
 module.exports = router;
