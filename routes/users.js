@@ -8,15 +8,65 @@ var form = require('../helpers/validator');
 var perms = require('../helpers/permissions');
 
 router.get('/users', perms.isSuperAdmin(), function(req, res, next) {
-  Admins.findAll({ include: [Auctions] }).then((users) => {
-    Auctions.findAll().then((auctions)=>{
-      console.log(users);
-      res.render('user/index', { users: users, auctions: auctions });
+  Admins.findAll({ include: [{ model:Auctions, attributes:['id'] }] }).then((users) => {
+    let loopAuctions = function(id, user, callback){
+      if(user.Auctions.length > id){
+        user.owned_auctions.push(user.Auctions[id].id);
+        loopAuctions(id+1, user, callback);
+      }else{
+        callback();
+      }
+    };
+    let loopUsers = function(id, callback){
+      if(users.length > id){
+        users[id].owned_auctions = [];
+        loopAuctions(0, users[id], ()=>{
+          loopUsers(id+1, callback);
+        });
+      }else{
+        callback();
+      }
+    };
+    loopUsers(0, ()=>{
+      Auctions.findAll().then((auctions)=>{
+        console.log(users);
+        res.render('user/index', { users: users, auctions: auctions });
+      });
     });
+
   });
 });
 
-router.post('/user', perms.isSuperAdmin(), function(req, res, next) {
+router.post('/users/update', perms.isSuperAdmin(), function(req, res, next) {
+  Admins.findOne({
+    where: { id: req.body.user },
+    include: [Auctions]
+  }).then((user)=>{
+    Auctions.findById(req.body.auction).then((auction)=>{
+      let contains = function(id, callback){
+        if(user.Auctions.length > id){
+          if(user.Auctions[id].id == auction.id){
+            callback(true);
+          }else{
+            contains(id+1, callback);
+          }
+        }else{
+          callback(false);
+        }
+      }
+      contains(0, (found)=>{
+        if(!found){
+          user.addAuction(auction).then(()=>{
+            res.send({success:true});
+          });
+        }else{
+          user.removeAuction(auction).then(()=>{
+            res.send({success:true});
+          });
+        }
+      });
+    });
+  });
 
 });
 
