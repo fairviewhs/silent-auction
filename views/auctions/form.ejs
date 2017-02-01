@@ -1,0 +1,30 @@
+<paper-material elevation="1" class="maincontent">
+  <form method="post" action="<%= action.url %>">
+    <h2><%= action.name %> Auction</h2>
+    <paper-input-container always-float-label>
+      <label>Auction name</label>
+      <input name='name' value='<%= auction.name || "" %>' required></input>
+    </paper-input-container>
+
+    <paper-input-container always-float-label>
+      <label>Host</label>
+      <input name='host' value='<%= auction.host || "" %>' required></input>
+    </paper-input-container>
+
+    <paper-input-container always-float-label textarea>
+      <label>Description</label>
+      <input name='description' value='<%= auction.description || "" %>'></input>
+    </paper-input-container>
+
+    <paper-input-container always-float-label>
+      <label>Start Date</label>
+      <input type="date" name='start_time' value='<%= dates.js_form(auction.start_time) || "" %>'></input>
+    </paper-input-container>
+
+    <paper-input-container always-float-label>
+      <label>End Date</label>
+      <input type="date" name='end_time' value='<%= dates.js_form(auction.end_time) || "" %>'></input>
+    </paper-input-container>
+    <paper-button id="submit"><%= action.submit %> Auction</paper-button>
+  </form>
+</paper-material>

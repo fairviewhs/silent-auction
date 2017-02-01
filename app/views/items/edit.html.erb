@@ -1,9 +1,0 @@
-<paper-material elevation="1" class="maincontent">
-  <h2>Update Item</h2>
-
-  <%= form_for(@item, url: item_path(auction_id: params[:auction_id]), html: {id: "form", method: :patch}) do |f| %>
-    <%= render 'form', f: f %>
-    <paper-button id="submit">Edit Item</paper-button>
-  <% end %>
-
-</paper-material>

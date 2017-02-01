@@ -1,0 +1,71 @@
+<paper-material elevation="1" class="maincontent">
+  <%- link_to("<paper-button class='content'>Go Back to Auction</paper-button>", item.Auction.get_path()) %>
+</paper-material>
+
+<paper-material elevation="1" class="maincontent">
+  <div class="titleSection">
+    <div class="title"><%= item.name %> ($<%= item.Bids.length>0 ? item.Bids[0].amount : item.price %>)</div>
+    <% if(item.Auction.isAdmin(session.user)){ %>
+      <%- link_to("<paper-button class='content'>Delete</paper-button>", item.delete_path()) %>
+      <%- link_to("<paper-button class='content'>Edit</paper-button>", item.edit_path()) %>
+      <%- link_to("<paper-button class='content'>Bidders</paper-button>", item.bidders_path()) %>
+    <% } %>
+  </div>
+  <div class="pictureGroup">
+    <% item.picture_paths().forEach((pic)=>{ %>
+      <div class="Itempicture">
+        <img src="<%= pic %>"></img>
+      </div>
+    <% }); %>
+  </div>
+
+  <p>
+    <strong>Name:</strong>
+    <%= item.name %>
+  </p>
+
+  <p class="itemDescription">
+    <strong>Description:</strong>
+    <%= item.description %>
+  </p>
+
+  <% maxPrice = item.price %>
+  <% if(item.Bids.length > 0){ %>
+    <p>
+      <strong>Current Highest Bid</strong>
+      $<%= item.Bids[item.Bids.length-1].amount %>
+    </p>
+    <p id="itemBidder">
+      <strong>Current Highest Bidder</strong>
+      <%= item.Bids[item.Bids.length-1].User.name %>
+    </p>
+  <% }else{ %>
+    <p>
+      <strong>Price:</strong>
+      <%= item.price %>
+    </p>
+  <% } %>
+</paper-material>
+
+<% if(item.Auction.start_time > new Date()){ %>
+  <paper-material elevation="1" class="maincontent">
+    <h2>The auction has not started yet. Please check back later!</h2>
+  </paper-material>
+<% }else if(item.Auction.end_time > new Date()){ %>
+  <paper-material elevation="1" class="maincontent">
+    <h2>Submit a Bid for this item</h2>
+    <%- include('../bidders/form', {
+      user: (session.bidder || {}),
+      min_bid: (item.Bids.length > 0 ? item.Bids[item.Bids.length-1].amount + 10 : item.price),
+      action: item.get_path() + '/bids/create'
+    }); %>
+  </paper-material>
+<% }else{ %>
+  <paper-material elevation="1" class="maincontent">
+    <h2>The auction has finished.</h2>
+  </paper-material>
+<% } %>
+
+<paper-material elevation="1" class="maincontent">
+  <%- link_to("<paper-button class='content'>Go Back to Auction</paper-button>", item.Auction.get_path()) %>
+</paper-material>

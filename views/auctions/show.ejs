@@ -1,0 +1,43 @@
+<paper-material elevation="1" class="maincontent">
+  <div class="titleSection">
+    <div class="title"><%= auction.name %></div>
+    <% if(auction.isAdmin(session.user)){ %>
+      <%- link_to("<paper-button class='content'>Delete</paper-button>", auction.delete_path()) %>
+      <%- link_to("<paper-button class='content'>Edit</paper-button>", auction.edit_path()) %>
+      <%- link_to("<paper-button class='content'>Bidders</paper-button>", auction.bidders_path()) %>
+    <% } %>
+  </div>
+  <p class="itemDescription"><b>Description: </b><%= auction.description %></p>
+  <p><b>Host: </b><%= auction.host %></p>
+  <p><b>Start Time: </b><%= dates.human_readable(auction.start_time) %></p>
+  <p><b>End Time: </b><%= dates.human_readable(auction.end_time) %></p>
+</paper-material>
+
+<paper-material elevation="1" class="maincontent">
+  <% if(auction.isAdmin(session.user)){ %>
+    <%- link_to("<paper-button class='content'>New Item</paper-button>", auction.new_item_path()) %>
+  <% } %>
+  <% if(auction.Items.length == 0){%>
+    <p>There are currently no items in the auction</p>
+  <% }else{ %>
+    <div id="cardGrid">
+      <% auction.Items.forEach((item)=>{ %>
+        <a href="<%= item.get_path(auction) %>" class="body">
+          <div class="card">
+            <div class="picture"><%# image_tag item.picture.url(:medium) %></div>
+            <div class="cardTitle"><%= item.name %></div>
+          </div>
+        </a>
+      <% }); %>
+    </div>
+  <% } %>
+</paper-material>
+
+<% if(auction.start_time < new Date() && auction.end_time > new Date()){ %>
+  <%- include('../donations/index', {
+    user: (session.bidder || {}),
+    action: auction.get_path() + '/donations/create',
+    donations: auction.Donations,
+    auction: auction
+  }); %>
+<% } %>

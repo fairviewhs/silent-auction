@@ -1,0 +1,20 @@
+<h2>Change your password</h2>
+
+<form method='post'>
+
+  <div class="field">
+    <label>New password</label><br />
+    <input name='newpass' type="password" required></input>
+  </div>
+
+  <div class="field">
+    <label>Confirm password</label><br />
+    <input name='renewpass' type="password" required></input>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Change my password" %>
+  </div>
+</form>
+
+<%# render "devise/shared/links" %>

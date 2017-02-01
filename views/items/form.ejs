@@ -1,0 +1,43 @@
+<paper-material elevation="1" class="maincontent">
+  <h2><%= action.name %> Item</h2>
+  <form method="post" action="<%= action.url %>" enctype='multipart/form-data'>
+    <paper-input-container always-float-label>
+      <label>Name</label>
+      <input name='name' value='<%= item.name || ""%>' required></input>
+    </paper-input-container>
+
+    <paper-input-container always-float-label>
+      <label>Price</label>
+      <input name='price' type="number" min="1" value='<%= item.price || ""%>' required></input>
+    </paper-input-container>
+
+    <paper-input-container always-float-label textarea>
+      <label>Description</label>
+      <textarea name='desc'><%= item.description || ""%></textarea>
+    </paper-input-container>
+
+    <paper-input-container always-float-label textarea>
+      <label>The first picture will be the thumbnail icon. You can upload up to 3 pictures.</label>
+    </paper-input-container>
+    <vaadin-upload headers='{"Image": "1"}' accept="image/*">
+      <div class="drop-label">
+        <iron-icon icon="file-upload"></iron-icon>
+        <%= item.picture_file_name || "Drop file here..." %>
+      </div>
+    </vaadin-upload>
+    <vaadin-upload headers='{"Image": "2"}' accept="image/*">
+      <div class="drop-label">
+        <iron-icon icon="file-upload"></iron-icon>
+        <%= item.picture2_file_name || "Drop file here..." %>
+      </div>
+    </vaadin-upload>
+    <vaadin-upload headers='{"Image": "3"}' accept="image/*">
+      <div class="drop-label">
+        <iron-icon icon="file-upload"></iron-icon>
+        <%= item.picture3_file_name || "Drop file here..." %>
+      </div>
+    </vaadin-upload>
+    <br><br>
+    <paper-button id="submit"><%= action.name %> Item</paper-button>
+  </form>
+</paper-material>

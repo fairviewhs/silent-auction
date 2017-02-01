@@ -1,0 +1,70 @@
+<% if(!session.user || !session.user.confirmed){ %>
+  <paper-material elevation="1" class="maincontent">
+    Welcome to Silent Auction, a project under National Honor Society. Here you can bid
+    for items up for auction, or donate. Thank you for visiting!
+  </paper-material>
+<% }else{ %>
+  <paper-material elevation="1" class="maincontent">
+    <div class="titlebar">
+      <div class="title">Your auctions</div>
+      <% if(session.user.super_admin){ %>
+        <a href="/users">
+          <paper-button class='content' id='newauction'>Users</paper-button>
+        </a>
+        <a href="/auctions/new">
+          <paper-button class='content' id='newauction'>New Auction</paper-button>
+        </a>
+      <% } %>
+    </div>
+    <% if(!session.user || user.auctions.length == 0){ %>
+      <paper-item>You are not running any active auctions.</paper-item>
+    <% }else{ %>
+      <% user.auctions.forEach((auction)=>{ %>
+        <a href="/auctions/<%= auction.id %>" class="body">
+          <paper-item class="auctions">
+            <paper-item-body two-line>
+              <div class='auctionTitle'>
+                <div class='auctionName'><%= auction.name %></div>
+                <% if(auction.start_time > new Date()){ %>
+                  <div class='time'><%= 'Starts in ' + auction.start_time %></div>
+                <% }else if(auction.end_time > new Date()){ %>
+                  <div class='time'><%= 'ends in ' + auction.end_time %></div>
+                <% }else{ %>
+                  <div class='time'>Expired</div>
+                <% } %>
+              </div>
+              <div secondary><%= auction.host %></div>
+            </paper-item-body>
+          </paper-item>
+        </a>
+      <% }); %>
+    <% } %>
+  </paper-material>
+<% } %>
+
+<% if(auctions.length != 0){ %>
+  <paper-material elevation="1" class="maincontent">
+    <div class="titlebar">
+      <div class="title">Open Auctions</div>
+    </div>
+    <% auctions.forEach((auction)=>{ %>
+      <a href="/auctions/<%= auction.id %>" class="body">
+        <paper-item class="auctions">
+          <paper-item-body two-line>
+            <div class='auctionTitle'>
+              <div class='auctionName'><%= auction.name %></div>
+              <% if(auction.start_time > new Date()){ %>
+                <div class='time'><%= 'Starts on ' + auction.start_time %></div>
+              <% }else if(auction.end_time > new Date()){ %>
+                <div class='time'><%= 'ends on ' + auction.end_time %></div>
+              <% }else{ %>
+                <div class='time'>Expired</div>
+              <% } %>
+            </div>
+            <div secondary><%= auction.host %></div>
+          </paper-item-body>
+        </paper-item>
+      </a>
+    <% }); %>
+  </paper-material>
+<% } %>

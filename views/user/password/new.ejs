@@ -1,0 +1,15 @@
+<paper-material elevation="1" class="maincontent">
+  <h2>Forgot your password?</h2>
+
+  <form method='post'>
+    <paper-input-container alwaysFloatLabel="false">
+      <label>Email</label>
+      <input name='email' type="email" required></input>
+    </paper-input-container>
+
+    <paper-button id="submit">Send me reset password instructions</paper-button>
+  </form>
+
+  <hr>
+  <%# render "devise/shared/links" %>
+</paper-material>

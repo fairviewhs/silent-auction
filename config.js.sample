@@ -1,0 +1,21 @@
+module.exports = {
+  secrets: {
+    sessions: 'AAAAAAAAAA',
+    saltRounds: 11,
+    mail: {
+      user: 'silentauction',
+      pass: 'AAAAAAAAAA'
+    }
+  },
+  sequelize: {
+    user: 'SilentAuctions',
+    password: 'AAAAAAAAAA',
+    database: 'silent-auction',
+    options: {
+      host: 'localhost',
+      logging: console.log,
+      dialect: 'mysql'
+    }
+  },
+  root: 'http://localhost:3000'
+}

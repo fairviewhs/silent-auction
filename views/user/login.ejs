@@ -1,0 +1,28 @@
+<%# Ported from sessions/new %>
+<paper-material elevation="1" class="maincontent">
+  <h2>Log in</h2>
+
+  <form method="post">
+    <paper-input-container always-float-label>
+      <label>Email</label>
+      <input name='email' type="email" required></input>
+    </paper-input-container>
+
+    <paper-input-container always-float-label>
+      <label>Password</label>
+      <input name='password' type="password" required></input>
+    </paper-input-container>
+
+    <br><br>
+    <paper-button id="submit">Log in</paper-button>
+  </form>
+
+  <hr>
+  <%# render "devise/shared/links" %>
+</paper-material>
+
+<paper-material elevation="1" class="maincontent">
+  <h3>Note:</h3>
+  The log in is meant for auction owners to be able to manage their auctions.
+  If you are simply an auction bidder, then you do not have an account.
+</paper-material>
