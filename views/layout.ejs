@@ -19,14 +19,13 @@
     <link rel="import" href="/bower_components/paper-input/paper-input-error.html">
     <link rel="import" href="/bower_components/paper-item/paper-item.html">
     <link rel="import" href="/bower_components/paper-item/paper-item-body.html">
-    <link rel="import" href="/bower_components/paper-listbox/paper-listbox.html">
     <link rel="import" href="/bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
     <link rel="import" href="/bower_components/iron-autogrow-textarea/iron-autogrow-textarea.html">
     <link rel="import" href="/bower_components/vaadin-upload/vaadin-upload.html">
   </head>
   <body>
     <paper-toolbar>
-      <div class='title'><a href="/">Silent Auction</a></div>
+      <div class='title'><a href="/" style="pointer-events: auto;">Silent Auction</a></div>
       <% if(!session.user){ %>
         <a href="/login">
           <paper-button>Log in</paper-button>
