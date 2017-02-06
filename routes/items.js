@@ -39,8 +39,8 @@ router.post('/new', perms.isAdmin('auctionId'), upload.any(), function(req, res,
       });
     }else{
       if(req.body.name && req.body.price && req.body.desc &&
-        item.picture_file_name && item.picture2_file_name &&
-        item.picture3_file_name){
+        (item.picture_file_name || item.picture2_file_name ||
+        item.picture3_file_name)){
        item.update({
          name: req.body.name,
          price: req.body.price,
@@ -111,8 +111,8 @@ router.post('/:id/edit', perms.isAdmin('auctionId'), upload.any(), function(req,
       });
     }else{
       if(req.body.name && req.body.price && req.body.desc &&
-        item.picture_file_name && item.picture2_file_name &&
-        item.picture3_file_name){
+        (item.picture_file_name || item.picture2_file_name ||
+        item.picture3_file_name)){
        item.update({
          name: req.body.name,
          price: req.body.price,

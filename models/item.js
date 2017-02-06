@@ -32,9 +32,9 @@ module.exports = function(sequelize, DataTypes) {
       },
       picture_paths: function() {
         return [
-          "/images/uploads/"+this.picture_file_path,
-          "/images/uploads/"+this.picture2_file_path,
-          "/images/uploads/"+this.picture3_file_path
+          (this.picture_file_path?"/images/uploads/"+this.picture_file_path:undefined),
+          (this.picture2_file_path?"/images/uploads/"+this.picture2_file_path:undefined),
+          (this.picture3_file_path?"/images/uploads/"+this.picture3_file_path:undefined),
         ];
       }
     }

@@ -13,9 +13,11 @@
   </div>
   <div class="pictureGroup">
     <% item.picture_paths().forEach((pic)=>{ %>
-      <div class="Itempicture">
-        <img src="<%= pic %>"></img>
-      </div>
+      <% if(pic !== undefined){ %>
+        <div class="Itempicture">
+          <img class="Itempicture" src="<%= pic %>"></img>
+        </div>
+      <% } %>
     <% }); %>
   </div>
 

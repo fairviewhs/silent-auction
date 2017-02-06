@@ -57,6 +57,10 @@ div.pictureGroup div.Itempicture {
   padding: 10px;
 }
 
+img.Itempicture {
+  width: 350px;
+}
+
 .cardShadow {
   -moz-box-shadow: 3px 3px 4px #ccc;
   -webkit-box-shadow: 3px 3px 4px #ccc;
