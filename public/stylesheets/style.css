@@ -59,7 +59,7 @@ div.pictureGroup div.Itempicture {
 }
 img.thumb {
   /*max-height: 100%;*/
-  max-width: 75%;
+  width: 245px;
   display: block;
   padding-bottom: 5px;
   margin-left: auto;
