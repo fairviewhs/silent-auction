@@ -45,7 +45,6 @@ module.exports = function(sequelize, DataTypes) {
         }else if(this.picture3_file_path !== null){
           return "/images/uploads/"+this.picture3_file_path;
         }else{
-          console.log("returning null");
           return undefined;
         }
       }
