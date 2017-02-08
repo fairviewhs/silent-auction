@@ -4,7 +4,7 @@
 
 <paper-material elevation="1" class="maincontent">
   <div class="titleSection">
-    <div class="title"><%= item.name %> ($<%= item.Bids.length>0 ? item.Bids[0].amount : item.price %>)</div>
+    <div class="title"><%= item.name %> ($<%= item.Bids.length>0 ? item.Bids[item.Bids.length-1].amount : item.price %>)</div>
     <% if(item.Auction.isAdmin(session.user)){ %>
       <%- link_to("<paper-button class='content'>Delete</paper-button>", item.delete_path()) %>
       <%- link_to("<paper-button class='content'>Edit</paper-button>", item.edit_path()) %>
@@ -46,7 +46,7 @@
     <h2>Submit a Bid for this item</h2>
     <%- include('../bidders/form', {
       user: (session.bidder || {}),
-      min_bid: (item.Bids.length > 0 ? item.Bids[0].amount + 5 : item.price),
+      min_bid: (item.Bids.length > 0 ? item.Bids[item.Bids.length-1].amount + 5 : item.price),
       action: item.get_path() + '/bids/create'
     }); %>
   </paper-material>

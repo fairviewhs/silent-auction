@@ -12,7 +12,7 @@ itemBidRoutes.post('/create', form.exists(['email', 'bid_price', 'name', 'phone'
     where: { id: req.params.itemId},
     include: [Bids, Auctions]
   }).then((item)=>{
-    if(req.body.bid_price >= (item.Bids.length > 0 ? item.Bids[0].amount+5 : item.price)){
+    if(req.body.bid_price >= (item.Bids.length > 0 ? item.Bids[item.Bids.length-1].amount+5 : item.price)){
       Users.findOrCreate({
         where: {
           email: req.body.email,
