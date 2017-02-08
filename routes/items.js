@@ -79,7 +79,6 @@ router.get('/:id', function(req, res, next) {
       }
     ]
   }).then((item)=>{
-    console.log(item.Bids[item.Bids.length-1].amount);
     res.render('items/show', { item: item });
   });
 });
