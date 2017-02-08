@@ -8,16 +8,16 @@
     <p>Donors who have made a pledge:</p>
     <% donations.forEach((donation)=>{ %>
       <paper-item>
-        <% if(session.user){ %>
+        <% if(session.user&&session.user.super_admin){ %>
           <paper-item-body two-line>
             <div><%= donation.User.name %></div>
             <div secondary>
-              <%= donation.User.email %> | <%= donation.User.phone %> | $<%= donation.amount %>
+              <%= donation.User.email %>  |  <%= donation.User.phone %>  |  $<%= donation.amount %>
               <%- link_to("<paper-button class='content'>Delete Donation</paper-button>", donation.delete_path(auction)) %>
             </div>
           </paper-item-body>
         <% }else{ %>
-          <div><%= donation.User.name %> | $<%= donation.amount %></div>
+          <div><b><%= donation.User.name %></b> pledged $<%= donation.amount %></div>
         <% } %>
       </paper-item>
     <% }) %>

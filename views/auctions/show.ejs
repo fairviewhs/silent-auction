@@ -17,15 +17,19 @@
   <% if(auction.isAdmin(session.user)){ %>
     <%- link_to("<paper-button class='content'>New Item</paper-button>", auction.new_item_path()) %>
   <% } %>
-  <% if(auction.Items.length == 0){%>
+  <% if(auction.Items.length == 0){ %>
     <p>There are currently no items in the auction</p>
   <% }else{ %>
     <div id="cardGrid">
       <% auction.Items.forEach((item)=>{ %>
         <a href="<%= item.get_path(auction) %>" class="body">
           <div class="card">
-            <div class="picture"><%# image_tag item.picture.url(:medium) %></div>
             <div class="cardTitle"><%= item.name %></div>
+            <div>
+              <% if(item.thumb()){ %>
+                <img class="thumb" src="<%=item.thumb()%>"/>
+              <% } %>
+            </div>
           </div>
         </a>
       <% }); %>
