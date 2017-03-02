@@ -37,6 +37,10 @@ module.exports = function(sequelize, DataTypes) {
           (this.picture3_file_path?"/images/uploads/"+this.picture3_file_path:undefined),
         ];
       },
+      /**
+       * Gets the url for the images first set picture so it can be used as the thumbnail icon
+       * @return {string} - the thumbnail url
+       */
       thumb: function() {
         if(this.picture_file_path !== null){
           return "/images/uploads/"+this.picture_file_path;

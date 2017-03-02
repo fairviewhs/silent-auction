@@ -1,3 +1,10 @@
+###
+# entry-parser.py
+# used to convert a google doc with the NHS items into insert commands that can be executed on the server,
+# takes the file in the same directory named 'FinalPackagingList.txt' and outputs to std out. Tries to
+# cleverly pull the price out of the description, sets it -1 otherwise.
+###
+
 import re
 
 currentItem = {}

@@ -1,7 +1,7 @@
 {
-    "uid": "SilentAuctions",
-    "append": true,
-    "watch": true,
-    "script": "bin/www",
-    "sourceDir": "/srv/silent-auction"
+  "uid": "SilentAuctions",
+  "append": true,
+  "watch": true,
+  "script": "bin/www",
+  "sourceDir": "/srv/silent-auction"
 }

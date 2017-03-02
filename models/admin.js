@@ -14,16 +14,7 @@ module.exports = function(sequelize, DataTypes) {
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     name: DataTypes.STRING,
-    // reset_token: DataTypes.STRING,
-    // reset_sent: DataTypes.DATE,
-    // signin_count: DataTypes.INTEGER,
-    // current_signin: DataTypes.DATE,
-    // last_signin: DataTypes.DATE,
     confirm_token: DataTypes.STRING,
-    // confirm_date: DataTypes.DATE,
-    // confirm_sent_date: DataTypes.DATE,
-    // current_signin_ip: DataTypes.STRING,
-    // last_signin_ip: DataTypes.STRING,
     confirmed_email: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
@@ -35,6 +26,7 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     hooks: {
       beforeCreate: function(admin, options) {
+        // assigns a random token to the admin when being created
         admin.confirm_token = uuids.v4();
         admin.send_confirmation(()=>{});
       }
@@ -45,6 +37,10 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     instanceMethods: {
+      /**
+       * Sends a confirmation email for this admin
+       * @param {function()} callback - called when the email has been sent
+       */
       send_confirmation(callback){
         transporter.sendMail({
           from: 'SilentAuctions <silentauction@fairviewhs.org>',

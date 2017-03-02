@@ -29,6 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressLayouts);
 
+// set redis to manage sessions (in db 2 not db 0 to avoid conflicts)
 app.use(session({
   store: new RedisStore({
     host: 'localhost',
@@ -42,6 +43,8 @@ app.use(session({
   secret: config.secrets.sessions
 }));
 
+// Called whenever a page is accessed and checks permissions and sets
+// session data for views
 app.use(function(req,res,next){
   res.locals.session = req.session;
   res.locals.layout = './layout';
@@ -57,13 +60,10 @@ app.use(function(req,res,next){
   }
 });
 
+// defines the routes
 app.use('/', require('./routes/index'));
 app.use('/', require('./routes/users'));
 app.use('/auctions', require('./routes/auctions'));
-
-// devise_for :admins, :controllers => { registrations: 'registrations' }
-// get 'items/:id/bidders' => 'items#bidders', as: :item_bidders
-// get 'auctions/:id/bidders' => 'auctions#bidders', as: :auction_bidders
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

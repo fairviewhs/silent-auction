@@ -24,7 +24,9 @@ router.get('/new', perms.isAdmin('auctionId'), function(req, res, next) {
   res.render('items/form', { action: { name: 'New', url: 'new', submit: 'Create' }, item: { } });
 });
 
-//Recive images w/ multer
+// Called both when the item is fully submitted and when a user uploads and images to attach to the item,
+// updates the item with additional images and form data as it is submitted. Tracks the users currenct
+// edit with `req.session.editing = item.id;`
 router.post('/new', perms.isAdmin('auctionId'), upload.any(), function(req, res, next) {
   Items.findOrCreate({
     where: { id: req.session.editing },
@@ -100,7 +102,9 @@ router.get('/:id/edit', perms.isAdmin('auctionId'), function(req, res, next) {
   });
 });
 
-//Recive images w/ multer
+// Called both when the item is fully submitted and when a user uploads and images to attach to the item,
+// updates the item with additional images and form data as it is submitted. Tracks the users currenct
+// edit with `req.session.editing = item.id;`
 router.post('/:id/edit', perms.isAdmin('auctionId'), upload.any(), function(req, res, next) {
   Items.findById(req.params.id).then((item)=>{
     if(req.get('Image')){

@@ -1,6 +1,7 @@
 // (c) Dallen 2015
 
 $(document).ready(function() {
+  // ensures forms are parsed by submitForm and that polymer submits actually work
   $("form").each(function() {
     let form = $(this);
     form.attr("onsubmit", "return submitForm(this)");
@@ -10,6 +11,7 @@ $(document).ready(function() {
   });
 });
 
+// pretends to submit the form with ajax so the server can validate that the required fields accurate
 function submitForm(e){
   if($(e).attr("method") !== "post"){
     console.error("You must use post in your form for it to be used");

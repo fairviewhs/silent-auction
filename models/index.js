@@ -11,6 +11,7 @@ var sequelize = new Sequelize(
   config.sequelize.options
 );
 
+// Load all models so they can be accessed through this file alone
 var db = {};
 
 fs.readdirSync(__dirname).filter(function(file) {
